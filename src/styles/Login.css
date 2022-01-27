@@ -16,7 +16,8 @@ button {
   margin-top: 5px;
 }
 
-@media (max-width: 500px) {
+@media ( max-width : 500px ) {
+
   .container {
     width: 100%;
   }
