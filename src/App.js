@@ -4,6 +4,7 @@ import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  // TODO: Renderizar o componente Routes aqui
   return (
     <div className="meals">
       <span className="logo">TRYBE</span>
