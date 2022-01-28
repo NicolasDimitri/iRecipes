@@ -1,0 +1,11 @@
+.divSearchInput {
+  margin: 10px auto;
+  width: 90%;
+}
+
+.divSearchInput .searchInput {
+  border-radius: 10px;
+  border-color: #D1D1D1;
+  padding: 5px;
+  width: 100%;
+}

@@ -1,0 +1,22 @@
+.header {
+  background-color: #005DB9;
+}
+
+.header .nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.header .title {
+  color: #fff;
+}
+
+.header .nav .searchBtn {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+}
