@@ -19,7 +19,8 @@ function Login() {
   };
 
   const handleSubmit = () => {
-    validateForm();
+    localStorage.setItem('cocktailsToken ', 1);
+    localStorage.setItem('mealsToken ', 1);
   };
 
   useEffect(() => {
