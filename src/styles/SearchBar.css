@@ -1,0 +1,25 @@
+.divSearchInput {
+  margin: 10px auto;
+  width: 90%;
+}
+
+.divSearchInput .searchInput {
+  border-color: #d1d1d1;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100%;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.divSearchInput .search-btn {
+  background-color: #df3075;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  width: 100%;
+}
