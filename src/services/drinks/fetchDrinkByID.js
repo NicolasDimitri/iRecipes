@@ -5,7 +5,7 @@ const fetchDrinkByID = async (id) => {
   };
 
   try {
-    const request = await fetch(`www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+    const request = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
     const response = await request.json();
     return {
       ...RETURNED_OBJ,
