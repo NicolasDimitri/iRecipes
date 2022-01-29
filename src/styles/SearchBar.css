@@ -9,3 +9,17 @@
   padding: 5px;
   width: 100%;
 }
+
+.radio-group {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.divSearchInput .search-btn {
+  background-color: #DF3075;
+  border: none;
+  border-radius: 5px;
+  color: #FFF;
+  padding: 5px;
+  width: 100%;
+}
