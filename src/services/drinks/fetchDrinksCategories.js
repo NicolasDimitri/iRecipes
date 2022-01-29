@@ -6,7 +6,7 @@ const fetchDrinksCategories = async () => {
 
   try {
     const request = await fetch(
-      'www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
+      'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
     );
     const response = await request.json();
 
