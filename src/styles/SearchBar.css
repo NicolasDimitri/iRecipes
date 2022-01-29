@@ -4,8 +4,8 @@
 }
 
 .divSearchInput .searchInput {
+  border-color: #d1d1d1;
   border-radius: 10px;
-  border-color: #D1D1D1;
   padding: 5px;
   width: 100%;
 }
@@ -16,10 +16,10 @@
 }
 
 .divSearchInput .search-btn {
-  background-color: #DF3075;
+  background-color: #df3075;
   border: none;
   border-radius: 5px;
-  color: #FFF;
+  color: white;
   padding: 5px;
   width: 100%;
 }

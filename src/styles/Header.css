@@ -1,5 +1,5 @@
 .header {
-  background-color: #005DB9;
+  background-color: #005db9;
 }
 
 .header .nav {
@@ -10,13 +10,13 @@
 }
 
 .header .title {
-  color: #fff;
+  color: white;
 }
 
 .header .nav .searchBtn {
-  background-color: Transparent;
-  background-repeat:no-repeat;
+  background-color: transparent;
+  background-repeat: no-repeat;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
 }
