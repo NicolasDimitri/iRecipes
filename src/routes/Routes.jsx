@@ -1,16 +1,17 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import DoneRecipes from '../pages/DoneRecipes';
+import Drinks from '../pages/Drinks';
+import Explore from '../pages/Explore';
+import ExploreDrinks from '../pages/ExploreDrinks';
+import ExploreFoods from '../pages/ExploreFoods';
+import ExploreIngredients from '../pages/ExploreIngredients';
+import ExploreNationalities from '../pages/ExploreNationalities';
+import FavoritesRecipes from '../pages/FavoritesRecipes';
 import Foods from '../pages/Foods';
 import Login from '../pages/Login';
-import Drinks from '../pages/Drinks';
 import Profile from '../pages/Profile';
-import Explore from '../pages/Explore';
-import FavoritesRecipes from '../pages/FavoritesRecipes';
-import DoneRecipes from '../pages/DoneRecipes';
-import ExploreFoods from '../pages/ExploreFoods';
-import ExploreDrinks from '../pages/ExploreDrinks';
-import ExploreNationalities from '../pages/ExploreNationalities';
-import ExploreIngredients from '../pages/ExploreIngredients';
+import RecipeDetails from '../pages/RecipeDetails';
 
 export default function Routes() {
   return (
@@ -18,14 +19,14 @@ export default function Routes() {
       <Route exact path="/" component={ Login } />
       <Route exact path="/foods" component={ Foods } />
       <Route exact path="/drinks" component={ Drinks } />
-      <Route exact path="/foods:id" component={ Foods } />
-      <Route exact path="/drinks:id" component={ Drinks } />
+      <Route exact path="/foods:id" component={ RecipeDetails } />
+      <Route exact path="/drinks:id" component={ RecipeDetails } />
       <Route exact path="/foods:id/in-progress" component={ Foods } />
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/explore/foods" component={ ExploreFoods } />
       <Route exact path="/explore/drinks" component={ ExploreDrinks } />
-      <Route exact path="/explore/foods/ingredients" component={ ExploreIngredients } />
-      <Route exact path="/explore/drinks/ingredients" component={ ExploreIngredients } />
+      <Route exact path="/explore/foods/ingredient" component={ ExploreIngredients } />
+      <Route exact path="/explore/drinks/ingredient" component={ ExploreIngredients } />
       <Route
         exact
         path="/explore/foods/nationalities"
