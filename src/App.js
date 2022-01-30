@@ -1,7 +1,6 @@
 import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './routes/Routes';
+import './styles/styles.css';
 
 function App() {
   // TODO: Renderizar o componente Routes aqui
