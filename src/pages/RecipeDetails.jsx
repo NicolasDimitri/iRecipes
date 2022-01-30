@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import '../styles/RecipeDetails.css';
+import shareIcon from '../images/shareIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 export default function RecipeDetails() {
   const { id } = useParams();
@@ -18,13 +20,22 @@ export default function RecipeDetails() {
         {
           filterDetails.map((detail, index) => (
             <div key={ index } className="info">
-              <img src={ detail.image } alt={ detail.title } />
+              <img data-testid="recipe-photo" src={ detail.image } alt={ detail.title } />
 
               <div className="title">
-                <h1>{ detail.title }</h1>
+                <h1 data-testid="recipe-title">{ detail.title }</h1>
+
+                <div>
+                  <button type="button" data-testid="share-btn">
+                    <img src={ shareIcon } alt="share icon" />
+                  </button>
+                  <button type="button" data-testid="favorite-btn">
+                    <img src={ blackHeartIcon } alt="black heart icon" />
+                  </button>
+                </div>
               </div>
               <div>
-                <p>{ detail.tags }</p>
+                <p data-testid="recipe-category">{ detail.tags }</p>
               </div>
 
               <div className="ingredients-list">
@@ -32,7 +43,12 @@ export default function RecipeDetails() {
                 <ul>
                   {
                     detail.ingredients.map((ingredient) => (
-                      <li key={ ingredient }>{ ingredient }</li>
+                      <li
+                        key={ ingredient }
+                        data-testid={ `${index}-ingredient-name-and-measure` }
+                      >
+                        { ingredient }
+                      </li>
                     ))
                   }
                 </ul>
@@ -40,12 +56,13 @@ export default function RecipeDetails() {
 
               <div className="intructions">
                 <h2>Instructions</h2>
-                <p>{ detail.intructions }</p>
+                <p data-testid="instructions">{ detail.intructions }</p>
               </div>
 
               <div className="video">
                 <h2>Video</h2>
                 <iframe
+                  data-testid="video"
                   width="853"
                   height="480"
                   src={ detail.movie }
@@ -57,7 +74,7 @@ export default function RecipeDetails() {
               </div>
 
               <h2>Recommended</h2>
-              <div className="recommended">
+              <div className="recommended" data-testid={ `${index}-recomendation-card` }>
                 <div className="card">
                   <img src="" alt="" />
                   <div className="container">
@@ -67,7 +84,13 @@ export default function RecipeDetails() {
                 </div>
               </div>
 
-              <button type="button" className="btn btn-success">Start Recipe</button>
+              <button
+                type="button"
+                data-testid="start-recipe-btn"
+                className="btn btn-success"
+              >
+                Start Recipe
+              </button>
 
             </div>
           ))
