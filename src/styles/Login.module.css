@@ -1,0 +1,9 @@
+.title {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+
+  font-family: 'Amaranth', serif;
+  font-size: 30pt;
+  transform: translateX(-50%);
+}

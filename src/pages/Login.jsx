@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/Login.css';
 import { useHistory } from 'react-router-dom';
+import styles from '../styles/Login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -30,35 +30,39 @@ function Login() {
     validateForm();
   }, [email, password]);
 
+  console.log(styles);
+
   return (
-    <div className="container">
-      <div className="w-auto p-3">
-        <h1>Login</h1>
-        <form className="form">
-          <input
-            type="email"
-            data-testid="email-input"
-            name="email"
-            value={ email }
-            onChange={ ({ target }) => setEmail(target.value) }
-          />
-          <input
-            type="password"
-            data-testid="password-input"
-            name="password"
-            value={ password }
-            onChange={ ({ target }) => setPassword(target.value) }
-          />
-          <button
-            type="button"
-            data-testid="login-submit-btn"
-            onClick={ handleSubmit }
-            disabled={ disabled }
-          >
-            Enter
-          </button>
-        </form>
-      </div>
+    <div className="center_middle flex flex_direction_column box login">
+      <h1 className={ styles.title }>iRecipes</h1>
+      <form className="form">
+        <input
+          type="email"
+          data-testid="email-input"
+          name="email"
+          value={ email }
+          placeholder="E-mail"
+          onFocus={ (e) => { e.target.placeholder = 'E-mail'; } }
+          onChange={ ({ target }) => setEmail(target.value) }
+        />
+        <input
+          type="password"
+          data-testid="password-input"
+          name="password"
+          value={ password }
+          placeholder="Senha"
+          onFocus={ (e) => { e.target.placeholder = 'Senha'; } }
+          onChange={ ({ target }) => setPassword(target.value) }
+        />
+        <button
+          type="button"
+          data-testid="login-submit-btn"
+          onClick={ handleSubmit }
+          disabled={ disabled }
+        >
+          Enter
+        </button>
+      </form>
     </div>
   );
 }
