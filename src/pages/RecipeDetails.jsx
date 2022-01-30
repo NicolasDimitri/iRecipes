@@ -9,9 +9,7 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 export default function RecipeDetails() {
   const { id } = useParams();
   const data = useSelector((state) => state.requestReducers.data);
-  // console.log(data);
   const filterDetails = data.filter((recipe) => recipe.id === id);
-  console.log(filterDetails);
   return (
     <>
       <Header title="Details" />
@@ -26,10 +24,10 @@ export default function RecipeDetails() {
                 <h1 data-testid="recipe-title">{ detail.title }</h1>
 
                 <div>
-                  <button type="button" data-testid="share-btn">
+                  <button type="button" className="btn" data-testid="share-btn">
                     <img src={ shareIcon } alt="share icon" />
                   </button>
-                  <button type="button" data-testid="favorite-btn">
+                  <button type="button" className="btn" data-testid="favorite-btn">
                     <img src={ blackHeartIcon } alt="black heart icon" />
                   </button>
                 </div>
