@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import '../styles/RecipeDetails.css';
 import shareIcon from '../images/shareIcon.svg';
@@ -13,7 +14,6 @@ export default function RecipeDetails() {
   return (
     <>
       <Header title="Details" />
-
       <div className="container">
         {
           filterDetails.map((detail, index) => (
@@ -94,6 +94,7 @@ export default function RecipeDetails() {
           ))
         }
       </div>
+      <Footer />
     </>
   );
 }

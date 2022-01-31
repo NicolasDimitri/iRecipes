@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExibitionComponent from '../components/ExibitionComponent';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import requestFoodsToAPI from '../redux/actions';
@@ -28,6 +29,7 @@ export default function Foods() {
           )
         }
       </main>
+      <Footer />
     </>
   );
 }
