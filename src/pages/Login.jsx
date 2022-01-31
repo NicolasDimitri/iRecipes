@@ -29,9 +29,6 @@ function Login() {
     };
     validateForm();
   }, [email, password]);
-
-  console.log(styles);
-
   return (
     <div className="center_middle flex flex_direction_column box login">
       <h1 className={ styles.title }>iRecipes</h1>
