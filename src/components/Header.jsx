@@ -1,14 +1,26 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AplicationContext from '../context/AplicationContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import { requestDrinksFromAPI, requestFoodsToAPI } from '../redux/actions';
 import styles from '../styles/Header.module.css';
 import SearchBar from './SearchBar';
 
 function Header({ title, renderExplore }) {
   const { toggleSearchBar } = useContext(AplicationContext);
+  const isReload = useSelector((state) => state.requestReducers.foods);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isReload.length <= 0) {
+      dispatch(requestFoodsToAPI());
+      dispatch(requestDrinksFromAPI());
+    }
+  }, [dispatch, isReload.length]);
   return (
     <header className={ `box primary_color ${styles.box}` }>
       <div className="wrapper flex justify_content_between relative">
