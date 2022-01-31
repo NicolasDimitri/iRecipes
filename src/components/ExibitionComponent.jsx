@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import like from '../images/postLikeIcon.svg';
 import share from '../images/postShareIcon.svg';
 import styles from '../styles/Exibition.module.css';
@@ -9,13 +9,14 @@ export default function ExibitionComponent({
   exibitionData: { title, image, id },
   index,
 }) {
+  const { path } = useRouteMatch();
   return (
     <section className={ `wrapper primary_color ${styles.box}` }>
       <h1 data-testid={ `${index}-card-name` }>
         {title}
       </h1>
       <Link
-        to={ `/foods/${id}` }
+        to={ `/${path.replace('/', '')}/${id}` }
         data-testid={ `${index}-recipe-card` }
       >
         <img
