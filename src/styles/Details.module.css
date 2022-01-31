@@ -22,3 +22,31 @@
   margin: 20px 19px;
   border-radius: 5px;
 }
+
+.button {
+  background: none;
+  padding: 0;
+  width: 40px;
+}
+
+.head {  }
+.feedback { vertical-align: center }
+.feedback img { height: 40px;}
+
+
+/* .box {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+
+
+.title {
+  position: absolute;
+  bottom: 11px;
+  left: 50%;
+  font-family: 'Amaranth', serif;
+  font-size: 30pt;
+  transform: translateX(-50%);
+} */
