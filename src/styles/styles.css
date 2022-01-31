@@ -35,10 +35,18 @@
 
 @media screen and (max-width: 800px) {
   .wrapper { margin: 0 auto; width: 100%; }
+  iframe {
+    width: 100%;
+    height: 230px; 
+  }
 }
 
 @media screen and (min-width: 801px) {
   .wrapper { margin: 0 auto; width: 800px; }
+  iframe {
+    width: 100%;
+    height: 480px; 
+  }
 }
 
 /* --------------------------------------------------------- */
