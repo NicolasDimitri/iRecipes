@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className={ `primary_color box ${styles.box}` }>
       <nav className="wrapper flex justify_content_between ">
-        <Link to="/profile" className={ styles.button }>
+        <Link to="/drinks" className={ styles.button }>
           <img
             data-testid="profile-top-btn"
             src={ drinkIcon }
@@ -17,7 +17,7 @@ export default function Footer() {
             alt=""
           />
         </Link>
-        <Link to="/profile" className={ styles.button }>
+        <Link to="/explore" className={ styles.button }>
           <img
             data-testid="profile-top-btn"
             src={ exploreIcon }
@@ -25,7 +25,7 @@ export default function Footer() {
             alt=""
           />
         </Link>
-        <Link to="/profile" className={ styles.button }>
+        <Link to="/foods" className={ styles.button }>
           <img
             data-testid="profile-top-btn"
             src={ mealIcon }
