@@ -1,40 +1,39 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
-import '../styles/Footer.css';
+import styles from '../styles/Footer.module.css';
 
-const Footer = () => {
-  const history = useHistory();
+export default function Footer() {
   return (
-    <footer data-testid="footer" className="footer">
-      <button
-        type="button"
-        data-testid="drinks-bottom-btn"
-        className="button"
-        onClick={ () => history.push('/drinks') }
-      >
-        <img src={ drinkIcon } alt="drink" />
-      </button>
-      <button
-        type="button"
-        data-testid="explore-bottom-btn"
-        className="button"
-        onClick={ () => history.push('/explore') }
-      >
-        <img src={ exploreIcon } alt="explore" />
-      </button>
-      <button
-        type="button"
-        data-testid="food-bottom-btn"
-        className="button"
-        onClick={ () => history.push('/foods') }
-      >
-        <img src={ mealIcon } alt="meal" />
-      </button>
+    <footer className={ `primary_color box ${styles.box}` }>
+      <nav className="wrapper flex justify_content_between ">
+        <Link to="/drinks" className={ styles.button }>
+          <img
+            data-testid="profile-top-btn"
+            src={ drinkIcon }
+            width="70%"
+            alt=""
+          />
+        </Link>
+        <Link to="/explore" className={ styles.button }>
+          <img
+            data-testid="profile-top-btn"
+            src={ exploreIcon }
+            width="70%"
+            alt=""
+          />
+        </Link>
+        <Link to="/foods" className={ styles.button }>
+          <img
+            data-testid="profile-top-btn"
+            src={ mealIcon }
+            width="70%"
+            alt=""
+          />
+        </Link>
+      </nav>
     </footer>
   );
-};
-
-export default Footer;
+}

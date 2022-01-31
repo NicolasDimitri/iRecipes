@@ -6,18 +6,14 @@
  */
 const formatIngredientsAPI = (data) => {
   const array = [];
-  // Varre todos as chaves e valores do item 'food';
   Object.entries(data).filter((ingredient) => {
-    // Verifica se a chave corresponde a strIngredient e se ela não é nula ou vazia;
     if (ingredient[0].includes('strIngredient') && !!ingredient[1]) {
-      // Captura a medida dos ingredientes e salva em uma variável;
       const measure = ingredient[0].replace('Ingredient', 'Measure');
-      // Adiciona no estado global as instruções;
       array.push([ingredient[1], data[measure]]);
     }
     return false;
   });
-  return array; // Retorna a array global da função;
+  return array;
 };
 
 /**
@@ -45,11 +41,17 @@ export const removeLocalStorageKeys = (arrayOfKeys) => {
   arrayOfKeys.forEach((key) => localStorage.removeItem(key));
 };
 
+/**
+ * Format the data;
+ * @param { object } data - brute data;
+ * @param { boolean } isMeal - true if date is from food;
+ * @returns { Array.<object> } `Array` of objects;
+ */
 export const formatDataFromAPI = (data, isMeal) => {
   if (isMeal) {
-    const ARRAY_MODEL = data.map((item) => {
+    return data.map((item) => {
       const ingredients = formatIngredientsAPI(item);
-      const MODEL = {
+      return {
         id: item.idMeal,
         title: item.strMeal,
         category: item.strCategory,
@@ -58,11 +60,24 @@ export const formatDataFromAPI = (data, isMeal) => {
         ingredients,
         image: item.strMealThumb,
         tags: item.strTags,
-        movie: item.strYoutube,
+        movie: item.strYoutube.split('=')[1],
       };
-
-      return MODEL;
     });
-    return ARRAY_MODEL;
   }
+
+  return data.map((item) => {
+    const ingredients = formatIngredientsAPI(item);
+    return {
+      id: item.idDrink,
+      title: item.strDrink,
+      category: item.strCategory,
+      intructions: item.strInstructions,
+      ingredients,
+      image: item.strDrinkThumb,
+      tags: item.strTags,
+      movie: item.strVideo,
+      glass: item.strGlass,
+      iba: item.strIBA,
+    };
+  });
 };
