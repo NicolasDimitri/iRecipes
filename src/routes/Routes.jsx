@@ -25,8 +25,16 @@ export default function Routes() {
       <Route exact path="/explore" component={ Explore } />
       <Route exact path="/explore/foods" component={ ExploreFoods } />
       <Route exact path="/explore/drinks" component={ ExploreDrinks } />
-      <Route exact path="/explore/foods/ingredient" component={ ExploreIngredients } />
-      <Route exact path="/explore/drinks/ingredient" component={ ExploreIngredients } />
+      <Route
+        exact
+        path="/explore/foods/ingredients"
+        render={ () => <ExploreIngredients isDrink={ false } /> }
+      />
+      <Route
+        exact
+        path="/explore/drinks/ingredients"
+        render={ () => <ExploreIngredients isDrink /> }
+      />
       <Route
         exact
         path="/explore/foods/nationalities"

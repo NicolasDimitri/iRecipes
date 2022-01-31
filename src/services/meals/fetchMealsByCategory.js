@@ -1,7 +1,7 @@
 const fetchMealsByCategory = async (category) => {
   const RETURNED_OBJ = {
     data: [],
-    erro: '',
+    error: '',
   };
 
   try {

@@ -1,7 +1,7 @@
 const fetchIngredients = async () => {
   const RETURNED_OBJ = {
     data: [],
-    erro: '',
+    error: '',
   };
 
   try {

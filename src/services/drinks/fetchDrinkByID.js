@@ -1,7 +1,7 @@
 const fetchDrinkByID = async (id) => {
   const RETURNED_OBJ = {
     data: [],
-    erro: '',
+    error: '',
   };
 
   try {
