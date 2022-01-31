@@ -1,100 +1,85 @@
+import { PropTypes } from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import '../styles/RecipeDetails.css';
-import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
+import styles from '../styles/Details.module.css';
 
-export default function RecipeDetails() {
-  const { id } = useParams();
-  const data = useSelector((state) => state.requestReducers.data);
-  const filterDetails = data.filter((recipe) => recipe.id === id);
+export default function RecipeDetails({ match: { params } }) {
+  const { path } = useRouteMatch();
+  const data = useSelector((state) => {
+    if (path.includes('foods')) return state.requestReducers.foods;
+    return state.requestReducers.drinks;
+  });
+
+  const item = data.filter(({ id }) => id === params.id)[0];
+  console.log(item);
   return (
     <>
       <Header title="Details" />
-      <div className="container">
-        {
-          filterDetails.map((detail, index) => (
-            <div key={ index } className="info">
-              <img data-testid="recipe-photo" src={ detail.image } alt={ detail.title } />
-
-              <div className="title">
-                <h1 data-testid="recipe-title">{ detail.title }</h1>
-
-                <div>
-                  <button type="button" className="btn" data-testid="share-btn">
-                    <img src={ shareIcon } alt="share icon" />
-                  </button>
-                  <button type="button" className="btn" data-testid="favorite-btn">
-                    <img src={ blackHeartIcon } alt="black heart icon" />
-                  </button>
-                </div>
+      <section
+        id="recipeDescription"
+        style={ { margin: '90px 0' } }
+      >
+        {item && (
+          <div className={ `flex flex_direction_column wrapper ${styles.box}` }>
+            <img src={ item.image } alt="a" />
+            <div className={ `flex flex justify_content_between ${styles.head}` }>
+              <h1>{ item.title }</h1>
+              <div className={ styles.feedback }>
+                <button
+                  type="button"
+                  className={ styles.button }
+                  data-testid="share-btn"
+                >
+                  <img src={ shareIcon } alt="share icon" />
+                </button>
+                <button
+                  type="button"
+                  className={ styles.button }
+                  data-testid="favorite-btn"
+                >
+                  <img src={ blackHeartIcon } alt="black heart icon" />
+                </button>
               </div>
-              <div>
-                <p data-testid="recipe-category">{ detail.tags }</p>
-              </div>
-
-              <div className="ingredients-list">
-                <h2>Ingredients</h2>
-                <ul>
-                  {
-                    detail.ingredients.map((ingredient) => (
-                      <li
-                        key={ ingredient }
-                        data-testid={ `${index}-ingredient-name-and-measure` }
-                      >
-                        { ingredient }
-                      </li>
-                    ))
-                  }
-                </ul>
-              </div>
-
-              <div className="intructions">
-                <h2>Instructions</h2>
-                <p data-testid="instructions">{ detail.intructions }</p>
-              </div>
-
-              <div className="video">
-                <h2>Video</h2>
-                <iframe
-                  data-testid="video"
-                  width="853"
-                  height="480"
-                  src={ detail.movie }
-                  frameBorder="0"
-                  // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="Embedded youtube"
-                />
-              </div>
-
-              <h2>Recommended</h2>
-              <div className="recommended" data-testid={ `${index}-recomendation-card` }>
-                <div className="card">
-                  <img src="" alt="" />
-                  <div className="container">
-                    <h3>oi</h3>
-                    <p>Description</p>
-                  </div>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                data-testid="start-recipe-btn"
-                className="btn btn-success"
-              >
-                Start Recipe
-              </button>
-
             </div>
-          ))
-        }
-      </div>
+
+            <h3>{ item.category }</h3>
+            <div className={ styles.ingredients }>
+              <h4>Ingredients:</h4>
+              { item.ingredients.map((ingredient, i) => (
+                <p key={ i }>
+                  {` - ${ingredient[0]} - ${ingredient[1]}`}
+                </p>
+              ))}
+            </div>
+            <div className={ styles.ingredients }>
+              <h4>Instructions:</h4>
+              <p>{item.intructions}</p>
+            </div>
+            <div className={ styles.ingredients }>
+              <h4>Video: </h4>
+              <iframe
+                title="YouTube video player"
+                id="ytplayer"
+                type="text/html"
+                src={ `https://www.youtube.com/embed/${item.movie}` }
+                frameBorder="0"
+              />
+            </div>
+          </div>
+        )}
+      </section>
       <Footer />
     </>
   );
 }
+
+RecipeDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.objectOf(PropTypes.string),
+  }).isRequired,
+};

@@ -1,7 +1,8 @@
-import { REQUEST_FOODS } from '../actions';
+import { REQUEST_DRINKS, REQUEST_FOODS } from '../actions';
 
 const INTIAL_STATE = {
-  data: [],
+  foods: [],
+  drinks: [],
   error: '',
 };
 
@@ -10,7 +11,13 @@ const requestReducers = (state = INTIAL_STATE, action) => {
   case REQUEST_FOODS:
     return {
       ...state,
-      data: action.payload.data,
+      foods: action.payload.data,
+      error: action.payload.error,
+    };
+  case REQUEST_DRINKS:
+    return {
+      ...state,
+      drinks: action.payload.data,
       error: action.payload.error,
     };
   default:
