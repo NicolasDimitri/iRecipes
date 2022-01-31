@@ -74,6 +74,7 @@ body {
 .justify_content_between { justify-content: space-between; }
 .justify_content_around { justify-content: space-around;}
 .flex_direction_column { flex-direction: column; }
+.flex_direction_row { flex-direction: row; }
 
 /* Forms */
 input { background-color: var(--main-secondary-color);  }
