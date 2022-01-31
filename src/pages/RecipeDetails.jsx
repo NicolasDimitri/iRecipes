@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 import styles from '../styles/Details.module.css';
 
 export default function RecipeDetails({ match: { params } }) {
@@ -25,7 +27,26 @@ export default function RecipeDetails({ match: { params } }) {
         {item && (
           <div className={ `flex flex_direction_column wrapper ${styles.box}` }>
             <img src={ item.image } alt="a" />
-            <h1>{ item.title }</h1>
+            <div className={ `flex flex justify_content_between ${styles.head}` }>
+              <h1>{ item.title }</h1>
+              <div className={ styles.feedback }>
+                <button
+                  type="button"
+                  className={ styles.button }
+                  data-testid="share-btn"
+                >
+                  <img src={ shareIcon } alt="share icon" />
+                </button>
+                <button
+                  type="button"
+                  className={ styles.button }
+                  data-testid="favorite-btn"
+                >
+                  <img src={ blackHeartIcon } alt="black heart icon" />
+                </button>
+              </div>
+            </div>
+
             <h3>{ item.category }</h3>
             <div className={ styles.ingredients }>
               <h4>Ingredients:</h4>
