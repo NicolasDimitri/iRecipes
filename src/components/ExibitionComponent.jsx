@@ -10,6 +10,18 @@ export default function ExibitionComponent({
   index,
 }) {
   const { path } = useRouteMatch();
+
+  const addEntry = (idRecipe) => {
+    let existingFavorites = JSON.parse(localStorage.getItem('favorites'));
+    if (existingFavorites === null) existingFavorites = [];
+    const newEntry = JSON.stringify(existingFavorites.concat(idRecipe));
+    localStorage.setItem('favorites', newEntry);
+  };
+
+  const handleLike = (idRecipe) => {
+    addEntry(idRecipe);
+  };
+
   return (
     <section className={ `wrapper primary_color ${styles.box}` }>
       <h1 data-testid={ `${index}-card-name` }>
@@ -27,7 +39,12 @@ export default function ExibitionComponent({
         />
       </Link>
       <section className={ `flex justify_content_around ${styles.feedback}` }>
-        <img src={ like } alt="a" />
+        <button
+          type="button"
+          onClick={ () => handleLike(id) }
+        >
+          <img src={ like } alt="a" />
+        </button>
         <img src={ share } alt="b" />
       </section>
     </section>
