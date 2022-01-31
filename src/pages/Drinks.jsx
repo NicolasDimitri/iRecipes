@@ -10,7 +10,6 @@ export default function Drinks() {
   return (
     <>
       <Header title="Drinks" />
-      <>
         <main style={ { margin: '90px 0' } } className="flex flex_direction_column">
           {
             data.length > 0 && (
@@ -25,7 +24,6 @@ export default function Drinks() {
           }
         </main>
         <Footer />
-      </>
     </>
   );
 }
