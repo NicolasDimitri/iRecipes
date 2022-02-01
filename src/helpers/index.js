@@ -23,9 +23,9 @@ const formatIngredientsAPI = (data) => {
    * @returns { string } - user email
    */
 export const getUserEmailFromLocalStorage = () => {
-  if (!JSON.parse(localStorage.getItem('user'))) {
+  if (!localStorage.getItem('user')) {
     localStorage.setItem('user', JSON.stringify({ email: '' }));
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem('user')).email;
   }
   return JSON.parse(localStorage.getItem('user')).email;
 };
