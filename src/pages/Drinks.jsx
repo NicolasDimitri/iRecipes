@@ -24,15 +24,6 @@ export default function Drinks() {
       <main style={ { margin: '90px 0' } } className="flex flex_direction_column">
         {
           data.length > 0 && (
-<<<<<<< HEAD
-            data.map((item, index) => (
-              <ExibitionComponent
-                key={ item.title }
-                exibitionData={ item }
-                index={ index }
-              />
-            ))
-=======
             data.map((item, index) => {
               if ((index + 1) <= MAXIMUM_RECIPES_CARD) {
                 return (
@@ -45,7 +36,6 @@ export default function Drinks() {
               }
               return false;
             })
->>>>>>> 117455492b00a13821cf45eca10ae6ff07695736
           )
         }
       </main>

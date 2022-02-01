@@ -7,7 +7,9 @@ import styles from '../styles/Footer.module.css';
 
 export default function Footer() {
   return (
-    <footer className={ `primary_color box ${styles.box}` }>
+    <footer
+      className={ `primary_color box ${styles.box}` }
+    >
       <nav className="wrapper flex justify_content_between ">
         <Link to="/drinks" className={ styles.button }>
           <img
