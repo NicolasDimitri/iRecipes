@@ -1,22 +1,31 @@
 import { PropTypes } from 'prop-types';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import styles from '../styles/Details.module.css';
+import { requestFoodsByIdFromAPI, requestDrinksByIdFromAPI } from '../redux/actions';
 
-export default function RecipeDetails({ match: { params } }) {
+export default function RecipeDetails({ match: { params: { id } } }) {
   const { path } = useRouteMatch();
-  const data = useSelector((state) => {
-    if (path.includes('foods')) return state.requestReducers.foods;
-    return state.requestReducers.drinks;
-  });
 
-  const item = data.filter(({ id }) => id === params.id)[0];
-  console.log(item);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (path.includes('foods')) {
+      dispatch(requestFoodsByIdFromAPI(id));
+    } else {
+      dispatch(requestDrinksByIdFromAPI(id));
+    }
+  }, [dispatch, id, path]);
+
+  const data = useSelector((state) => state.requestReducers.recipeDetails);
+
+  const item = data[0];
+
   return (
     <>
       <Header title="Details" />
