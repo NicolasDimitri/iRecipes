@@ -33,7 +33,7 @@ export const getUserEmailFromLocalStorage = () => {
 /**
  * Removes the user-related keys from localstorage
  * @function removeLocalStorageKeys
- * @param { Array } arrayOfKeys - A array of stings
+ * @param { Array } arrayOfKeys - A array of strings
  * @return {void} - returns nothing
  */
 

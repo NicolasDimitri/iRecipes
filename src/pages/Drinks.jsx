@@ -10,20 +10,20 @@ export default function Drinks() {
   return (
     <>
       <Header title="Drinks" />
-        <main style={ { margin: '90px 0' } } className="flex flex_direction_column">
-          {
-            data.length > 0 && (
-              data.map((item, index) => (
-                <ExibitionComponent
-                  key={ item.title }
-                  exibitionData={ item }
-                  index={ index }
-                />
-              ))
-            )
-          }
-        </main>
-        <Footer />
+      <main style={ { margin: '90px 0' } } className="flex flex_direction_column">
+        {
+          data.length > 0 && (
+            data.map((item, index) => (
+              <ExibitionComponent
+                key={ item.title }
+                exibitionData={ item }
+                index={ index }
+              />
+            ))
+          )
+        }
+      </main>
+      <Footer />
     </>
   );
 }
