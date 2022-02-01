@@ -60,7 +60,7 @@ export const formatDataFromAPI = (data, isMeal) => {
         ingredients,
         image: item.strMealThumb,
         tags: item.strTags,
-        movie: item.strYoutube.split('=')[1],
+        movie: item.strYoutube ? item.strYoutube.split('=')[1] : '',
       };
     });
   }

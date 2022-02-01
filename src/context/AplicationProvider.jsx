@@ -4,6 +4,7 @@ import AplicationContext from './AplicationContext';
 
 function AplicationProvider({ children }) {
   const [renderButton, setRenderButton] = useState(false);
+  const [selectedIngredient, setSelectedIngredient] = useState('');
 
   /**
    * Altera o status do renderButton
@@ -16,6 +17,8 @@ function AplicationProvider({ children }) {
   const stateValue = {
     renderButton,
     toggleSearchBar,
+    setSelectedIngredient,
+    selectedIngredient,
   };
 
   return (

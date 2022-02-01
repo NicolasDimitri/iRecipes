@@ -11,10 +11,10 @@
 }
 
 .title {
-  position: absolute;
   bottom: 11px;
-  left: 50%;
-  font-family: 'Amaranth', serif;
+  font-family: Amaranth , serif;
   font-size: 30pt;
+  left: 50%;
+  position: absolute;
   transform: translateX(-50%);
 }

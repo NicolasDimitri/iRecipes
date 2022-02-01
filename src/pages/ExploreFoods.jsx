@@ -19,8 +19,10 @@ export default function ExploreFoods({ history }) {
           display: 'flex',
           justifyContent: 'space-between',
           flexDirection: 'column',
+          marginTop: '90px',
         } }
         id="nav-explore"
+        className="wrapper"
       >
         <button
           type="button"
