@@ -1,7 +1,7 @@
 const fetchMealsNacionality = async () => {
   const RETURNED_OBJ = {
     data: [],
-    erro: '',
+    error: '',
   };
 
   try {
