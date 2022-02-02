@@ -19,3 +19,7 @@
 }
 
 .feedback img { width: 30px; }
+
+button {
+  background-color: none;
+}

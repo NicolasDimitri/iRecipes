@@ -6,6 +6,7 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import styles from '../styles/Details.module.css';
 import { requestFoodsByIdFromAPI, requestDrinksByIdFromAPI } from '../redux/actions';
+import RecomendedRecipes from '../components/RecomendedRecipes';
 
 export default function RecipeDetails({ match: { params: { id } } }) {
   const { path } = useRouteMatch();
@@ -74,6 +75,7 @@ export default function RecipeDetails({ match: { params: { id } } }) {
               frameBorder="0"
             />
           </div>
+          <RecomendedRecipes />
         </div>
       )}
     </section>
