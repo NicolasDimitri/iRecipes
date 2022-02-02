@@ -14,7 +14,7 @@ function Header({ title, renderExplore }) {
     if (renderButton) {
       toggleSearchBar();
     }
-  }, []);
+  }, [renderButton, toggleSearchBar]);
 
   return (
     <header className={ `box primary_color ${styles.box}` }>
