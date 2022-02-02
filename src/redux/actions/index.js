@@ -7,6 +7,8 @@ import fetchDrinkIngredients from '../../services/drinks/fetchDrinkIngredients';
 import fetchMealsByIngredients from '../../services/meals/fetchMealsByIngredients';
 import fetchDrinkByID from '../../services/drinks/fetchDrinkByID';
 import fetchMealByID from '../../services/meals/fetchMealByID';
+import fetchDrinksByFirstLetter from '../../services/drinks/fetchDrinksByFirstLetter';
+import fetchMealsByFirstLetter from '../../services/meals/fetchMealsByFirstLetter';
 
 export const REQUEST_FOODS = 'REQUEST_FOODS';
 export const REQUEST_DRINKS = 'REQUEST_DRINKS';
@@ -86,4 +88,28 @@ export const requestRecomendedRecipesToAPI = (isMeal) => async (dispatch) => {
     const dataFormated = formatDataFromAPI(data.data, true);
     dispatch(requestRecomendedRecipes({ data: dataFormated, error: data.error }));
   }
+};
+
+export const requestFoodsByName = (name) => async (dispatch) => {
+  const data = await fetchMealByName(name);
+  const dataFormated = formatDataFromAPI(data.data, true);
+  dispatch({ type: REQUEST_FOODS, payload: { data: dataFormated, error: data.error } });
+};
+
+export const requestFoodsByFirstLetter = (letter) => async (dispatch) => {
+  const data = await fetchMealsByFirstLetter(letter);
+  const dataFormated = formatDataFromAPI(data.data, true);
+  dispatch({ type: REQUEST_FOODS, payload: { data: dataFormated, error: data.error } });
+};
+
+export const requestDrinksByName = (name) => async (dispatch) => {
+  const data = await fetchDrinkByName(name);
+  const dataFormated = formatDataFromAPI(data.data, false);
+  dispatch({ type: REQUEST_DRINKS, payload: { data: dataFormated, error: data.error } });
+};
+
+export const requestDrinksByFirstLetter = (letter) => async (dispatch) => {
+  const data = await fetchDrinksByFirstLetter(letter);
+  const dataFormated = formatDataFromAPI(data.data, false);
+  dispatch({ type: REQUEST_DRINKS, payload: { data: dataFormated, error: data.error } });
 };
