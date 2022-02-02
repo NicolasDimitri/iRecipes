@@ -15,7 +15,7 @@ export default function Profile() {
   return (
     <>
       <Header title="Profile" renderExplore={ false } />
-      <main>
+      <main style={ { marginTop: '90px' } }>
         <p data-testid="profile-email">
           {getUserEmailFromLocalStorage()}
         </p>

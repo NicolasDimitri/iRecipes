@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AplicationContext from '../context/AplicationContext';
 import profileIcon from '../images/profileIcon.svg';
@@ -8,7 +8,14 @@ import styles from '../styles/Header.module.css';
 import SearchBar from './SearchBar';
 
 function Header({ title, renderExplore }) {
-  const { toggleSearchBar } = useContext(AplicationContext);
+  const { toggleSearchBar, renderButton } = useContext(AplicationContext);
+
+  useEffect(() => {
+    if (renderButton) {
+      toggleSearchBar();
+    }
+  }, []);
+
   return (
     <header className={ `box primary_color ${styles.box}` }>
       <div className="wrapper flex justify_content_between relative ">
