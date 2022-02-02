@@ -6,6 +6,8 @@ function AplicationProvider({ children }) {
   const [renderButton, setRenderButton] = useState(false);
   const [selectedIngredient, setSelectedIngredient] = useState('');
   const [darkMode, toggleDarkMode] = useState(true);
+  const [searchInput, setSearchInput] = useState('');
+  const [selectRadio, setSelectRadio] = useState('');
 
   /**
    * Altera o tema da aplicaçao para dark ou light mode
@@ -31,6 +33,10 @@ function AplicationProvider({ children }) {
     selectedIngredient,
     changeTheme,
     darkMode,
+    searchInput,
+    setSearchInput,
+    selectRadio,
+    setSelectRadio,
   };
 
   return (
