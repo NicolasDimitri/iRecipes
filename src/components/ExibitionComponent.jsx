@@ -6,20 +6,32 @@ import share from '../images/postShareIcon.svg';
 import styles from '../styles/Exibition.module.css';
 
 export default function ExibitionComponent({
-  exibitionData: { title, image, id },
+  exibitionData: { title, image, id, tags, category, location },
   index,
 }) {
   const { path } = useRouteMatch();
 
-  const addEntry = (idRecipe) => {
+  const addEntry = () => {
+    const obj = {
+      id,
+      title,
+      image,
+      tags,
+      category,
+      location,
+      path,
+    };
     let existingFavorites = JSON.parse(localStorage.getItem('favorites'));
     if (existingFavorites === null) existingFavorites = [];
-    const newEntry = JSON.stringify(existingFavorites.concat(idRecipe));
+    console.log(obj);
+    const newEntry = JSON.stringify(existingFavorites.concat(obj));
     localStorage.setItem('favorites', newEntry);
   };
 
-  const handleLike = (idRecipe) => {
-    addEntry(idRecipe);
+  const copToClipboard = () => {
+    const copyText = `http://localhost:3000/${path.replace('/', '')}/${id}`;
+    navigator.clipboard.writeText(copyText);
+    alert('Link copied!');
   };
 
   return (
@@ -39,13 +51,17 @@ export default function ExibitionComponent({
         />
       </Link>
       <section className={ `flex justify_content_around ${styles.feedback}` }>
-        <button
-          type="button"
-          onClick={ () => handleLike(id) }
-        >
+        <div onClick={ addEntry } onKeyPress={ addEntry } role="button" tabIndex="0">
           <img src={ like } alt="a" />
-        </button>
-        <img src={ share } alt="b" />
+        </div>
+        <div
+          onClick={ copToClipboard }
+          onKeyPress={ copToClipboard }
+          role="button"
+          tabIndex="0"
+        >
+          <img src={ share } alt="b" />
+        </div>
       </section>
     </section>
   );
