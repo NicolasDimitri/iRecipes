@@ -17,46 +17,43 @@ export default function FavoritesRecipes() {
       </div>
       <div className={ style['cards-list'] }>
         {
-          favoriteRecipes.map((fav) => {
-            console.log(fav);
-            return (
-              <div key={ fav.id } className={ style.card_container }>
-                <div className="card u-clearfix">
-                  <div>
-                    <img
-                      src={ fav.image }
-                      data-testid={ `${fav.id}-horizontal-image` }
-                      alt=""
-                      className={ style['card-media'] }
-                    />
-                  </div>
-                  <div className={ style['card-body'] }>
-                    <div className={ style['card-info'] }>
-                      <span
-                        className={ style['card-category'] }
-                        data-testid={ `${fav.category}-horizontal-top-text` }
-                      >
-                        { fav.category }
-                      </span>
-                      <h2
-                        className={ style['card-location'] }
-                        data-testid={ `${fav.id}-${fav.location}-horizontal-tag` }
-                      >
-                        { fav.location }
-                      </h2>
-                    </div>
-                    <div
-                      className={ style['card-title'] }
-                      data-testid={ `${fav.title}-horizontal-name` }
+          favoriteRecipes.map((fav) => (
+            <div key={ fav.id } className={ style.card_container }>
+              <div className="card u-clearfix">
+                <div>
+                  <img
+                    src={ fav.image }
+                    data-testid={ `${fav.id}-horizontal-image` }
+                    alt=""
+                    className={ style['card-media'] }
+                  />
+                </div>
+                <div className={ style['card-body'] }>
+                  <div className={ style['card-info'] }>
+                    <span
+                      className={ style['card-category'] }
+                      data-testid={ `${fav.category}-horizontal-top-text` }
                     >
-                      { fav.title }
-                    </div>
-                    <ShareFavoriteBtn />
+                      { fav.category }
+                    </span>
+                    <h2
+                      className={ style['card-location'] }
+                      data-testid={ `${fav.id}-${fav.location}-horizontal-tag` }
+                    >
+                      { fav.location }
+                    </h2>
                   </div>
+                  <div
+                    className={ style['card-title'] }
+                    data-testid={ `${fav.title}-horizontal-name` }
+                  >
+                    { fav.title }
+                  </div>
+                  <ShareFavoriteBtn />
                 </div>
               </div>
-            );
-          })
+            </div>
+          ))
         }
       </div>
     </>

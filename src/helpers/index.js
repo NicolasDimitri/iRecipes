@@ -76,6 +76,7 @@ export const formatDataFromAPI = (data, isMeal) => {
       image: item.strDrinkThumb,
       tags: item.strTags,
       movie: item.strVideo,
+      isAlcolic: item.strAlcoholic,
       glass: item.strGlass,
       iba: item.strIBA,
     };

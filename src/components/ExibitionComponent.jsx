@@ -31,7 +31,7 @@ export default function ExibitionComponent({
   const copToClipboard = () => {
     const copyText = `http://localhost:3000/${path.replace('/', '')}/${id}`;
     navigator.clipboard.writeText(copyText);
-    alert('Link copied!');
+    global.alert('Link copied!');
   };
 
   return (
@@ -51,17 +51,20 @@ export default function ExibitionComponent({
         />
       </Link>
       <section className={ `flex justify_content_around ${styles.feedback}` }>
-        <div onClick={ addEntry } onKeyPress={ addEntry } role="button" tabIndex="0">
+        <button
+          className={ styles.button }
+          onClick={ addEntry }
+          type="button"
+        >
           <img src={ like } alt="a" />
-        </div>
-        <div
+        </button>
+        <button
+          className={ styles.button }
           onClick={ copToClipboard }
-          onKeyPress={ copToClipboard }
-          role="button"
-          tabIndex="0"
+          type="button"
         >
           <img src={ share } alt="b" />
-        </div>
+        </button>
       </section>
     </section>
   );
