@@ -9,7 +9,8 @@ function Login() {
 
   const history = useHistory();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     localStorage.setItem('cocktailsToken', '1');
     localStorage.setItem('mealsToken', '1');
     localStorage.setItem('user', JSON.stringify({ email }));
@@ -52,7 +53,7 @@ function Login() {
           onChange={ ({ target }) => setPassword(target.value) }
         />
         <button
-          type="button"
+          type="submit"
           data-testid="login-submit-btn"
           onClick={ handleSubmit }
           disabled={ disabled }

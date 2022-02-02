@@ -1,26 +1,34 @@
-
-.box { margin-top: 3vh !important; padding: 20px; border: solid 1px var(--main-border-color) }
+.box { border: solid 1px var(--main-border-color);
+  margin-top: 3vh;
+  padding: 20px; }
 
 .box h1 {
+  font-size: 19pt;
   padding: 5px 0;
-  font-size: 19pt;;
 }
-
-.box h3 { padding: 5px 0; border-bottom: solid 0.1em var(--main-border-color); }
-.box h4 { margin-bottom:11px; padding-bottom: 11px; border-bottom: solid 0.1em var(--main-primary-color); }
 
 .box h1, h3 {
+  font-family: Amaranth , serif;
   margin: 0 19px;
-  font-family: 'Amaranth', serif;
 }
 
-.box img { width: 100%; height: 300px; object-fit: cover }
+.box h3 { border-bottom: solid 0.1em var(--main-border-color);
+  padding: 5px 0; }
+
+.box h4 { border-bottom: solid 0.1em var(--main-primary-color);
+  margin-bottom: 11px;
+  padding-bottom: 11px; }
+
+
+.box img { height: 300px;
+  object-fit: cover;
+  width: 100%; }
 
 .ingredients {
   background-color: var(--main-border-color);
-  padding: 20px 15px;
-  margin: 20px 19px;
   border-radius: 5px;
+  margin: 20px 19px;
+  padding: 20px 15px;
 }
 
 .button {
@@ -29,8 +37,9 @@
   width: 40px;
 }
 
-.head {  }
-.feedback { vertical-align: center }
+
+.feedback { vertical-align: center; }
+
 .feedback img { height: 40px;}
 
 
@@ -39,8 +48,6 @@
   top: 0;
   width: 100%;
 }
-
-
 
 .title {
   position: absolute;

@@ -23,9 +23,9 @@ const formatIngredientsAPI = (data) => {
    * @returns { string } - user email
    */
 export const getUserEmailFromLocalStorage = () => {
-  if (!JSON.parse(localStorage.getItem('user'))) {
+  if (!localStorage.getItem('user')) {
     localStorage.setItem('user', JSON.stringify({ email: '' }));
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem('user')).email;
   }
   return JSON.parse(localStorage.getItem('user')).email;
 };
@@ -33,7 +33,7 @@ export const getUserEmailFromLocalStorage = () => {
 /**
  * Removes the user-related keys from localstorage
  * @function removeLocalStorageKeys
- * @param { Array } arrayOfKeys - A array of stings
+ * @param { Array } arrayOfKeys - A array of strings
  * @return {void} - returns nothing
  */
 
@@ -60,7 +60,7 @@ export const formatDataFromAPI = (data, isMeal) => {
         ingredients,
         image: item.strMealThumb,
         tags: item.strTags,
-        movie: item.strYoutube.split('=')[1],
+        movie: item.strYoutube ? item.strYoutube.split('=')[1] : '',
       };
     });
   }

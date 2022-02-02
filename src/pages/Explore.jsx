@@ -19,7 +19,9 @@ export default function Explore({ history }) {
           display: 'flex',
           justifyContent: 'space-between',
           flexDirection: 'column',
+          marginTop: '90px',
         } }
+        className="wrapper"
         id="buttons-explor"
       >
         <button

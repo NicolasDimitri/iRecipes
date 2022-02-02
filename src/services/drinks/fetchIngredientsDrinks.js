@@ -1,15 +1,15 @@
-const fetchMealByID = async (id) => {
+const fetchIngredientsDrinks = async () => {
   const RETURNED_OBJ = {
     data: [],
     error: '',
   };
 
   try {
-    const request = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+    const request = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
     const response = await request.json();
     return {
       ...RETURNED_OBJ,
-      data: response.meals,
+      data: response.drinks,
     };
   } catch (err) {
     return {
@@ -19,4 +19,4 @@ const fetchMealByID = async (id) => {
   }
 };
 
-export default fetchMealByID;
+export default fetchIngredientsDrinks;
