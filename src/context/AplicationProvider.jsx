@@ -5,6 +5,16 @@ import AplicationContext from './AplicationContext';
 function AplicationProvider({ children }) {
   const [renderButton, setRenderButton] = useState(false);
   const [selectedIngredient, setSelectedIngredient] = useState('');
+  const [darkMode, toggleDarkMode] = useState(true);
+
+  /**
+   * Altera o tema da aplicaçao para dark ou light mode
+   * @function changeTheme
+   * @param void - don't recive param
+   */
+  const changeTheme = () => {
+    toggleDarkMode(!darkMode);
+  };
 
   /**
    * Altera o status do renderButton
@@ -19,6 +29,8 @@ function AplicationProvider({ children }) {
     toggleSearchBar,
     setSelectedIngredient,
     selectedIngredient,
+    changeTheme,
+    darkMode,
   };
 
   return (
