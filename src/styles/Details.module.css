@@ -42,6 +42,11 @@
 
 .feedback img { height: 40px;}
 
+.btnStartRecipe {
+  position: fixed;
+  bottom: 0;
+}
+
 
 /* .box {
   position: fixed;

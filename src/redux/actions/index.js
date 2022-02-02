@@ -12,6 +12,12 @@ export const REQUEST_FOODS = 'REQUEST_FOODS';
 export const REQUEST_DRINKS = 'REQUEST_DRINKS';
 export const REQUEST_INGREDIENTS = 'REQUEST_INGREDIENTS';
 export const REQUEST_RECIPE_ID = 'REQUEST_RECIPE_ID';
+export const REQUEST_RECOMENDED_RECIPES = 'REQUEST_RECOMENDED_RECIPES';
+
+export const requestRecomendedRecipes = (recipesData) => ({
+  type: REQUEST_RECOMENDED_RECIPES,
+  payload: recipesData,
+});
 
 export const requestIngredients = (ingredientsData) => ({
   type: REQUEST_INGREDIENTS,
@@ -68,4 +74,16 @@ export const requestDrinksByIdFromAPI = (id) => async (dispatch) => {
     type: REQUEST_RECIPE_ID,
     payload: { data: dataFormated, error: data.error },
   });
+};
+
+export const requestRecomendedRecipesToAPI = (isMeal) => async (dispatch) => {
+  if (isMeal) {
+    const data = await fetchDrinkByName('');
+    const dataFormated = formatDataFromAPI(data.data, false);
+    dispatch(requestRecomendedRecipes({ data: dataFormated, error: data.error }));
+  } else {
+    const data = await fetchMealByName('');
+    const dataFormated = formatDataFromAPI(data.data, true);
+    dispatch(requestRecomendedRecipes({ data: dataFormated, error: data.error }));
+  }
 };
