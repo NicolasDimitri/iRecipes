@@ -10,7 +10,7 @@ function AplicationProvider({ children }) {
   /**
    * Altera o tema da aplicaçao para dark ou light mode
    * @function changeTheme
-   * @param void - don't recive param
+   * @param void - Don't recive param
    */
   const changeTheme = () => {
     toggleDarkMode(!darkMode);
