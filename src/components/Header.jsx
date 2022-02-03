@@ -30,7 +30,12 @@ function Header({ title, renderExplore }) {
         <h1 data-testid="page-title" className={ styles.title }>{ title }</h1>
         {
           renderExplore && (
-            <button type="button" className={ styles.button } onClick={ toggleSearchBar }>
+            <button
+              data-testid="search-btn"
+              type="button"
+              className={ styles.button }
+              onClick={ toggleSearchBar }
+            >
               <img
                 data-testid="search-top-btn"
                 src={ searchIcon }

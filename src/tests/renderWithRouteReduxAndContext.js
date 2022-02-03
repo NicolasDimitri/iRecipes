@@ -4,14 +4,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import { createStore } from 'redux';
-import AplicationContext from '../context/AplicationContext';
 import rootReducer from '../redux/reducers';
+import AplicationProvider from '../context/AplicationProvider';
 
 const renderWithRouteReduxAndContext = (
   component,
   {
-    providerProps,
-    renderOptions,
     initialState = {},
     store = createStore(rootReducer, initialState),
     initialEntries = ['/'],
@@ -21,15 +19,14 @@ const renderWithRouteReduxAndContext = (
   ...render(
     <Router history={ history }>
       <Provider store={ store }>
-        <AplicationContext.Provider { ...providerProps }>
+        <AplicationProvider>
           {component}
-        </AplicationContext.Provider>
+        </AplicationProvider>
       </Provider>
     </Router>,
   ),
   history,
   store,
-  renderOptions,
 });
 
 export default renderWithRouteReduxAndContext;
