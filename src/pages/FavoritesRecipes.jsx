@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '../components/Button';
 import Header from '../components/Header';
-import ShareFavoriteBtn from '../components/ShareFavoriteBtn';
 import style from '../styles/FavoriteRecipes.module.css';
 
 export default function FavoritesRecipes() {
@@ -49,7 +48,6 @@ export default function FavoritesRecipes() {
                   >
                     { fav.title }
                   </div>
-                  <ShareFavoriteBtn />
                 </div>
               </div>
             </div>
