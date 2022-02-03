@@ -43,8 +43,8 @@
 .feedback img { height: 40px;}
 
 .btnStartRecipe {
-  position: fixed;
   bottom: 0;
+  position: fixed;
 }
 
 
