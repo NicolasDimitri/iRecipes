@@ -7,6 +7,14 @@ import { createStore } from 'redux';
 import rootReducer from '../redux/reducers';
 import AplicationProvider from '../context/AplicationProvider';
 
+/**
+ *
+ * @function renderWithRouteReduxAndContext
+ * @param {*} component - O componente a ser renderizado
+ * @param {{}} param2 - Opcional,um objeto com as chaves initialState (Chaves do Redux)ou/e initialEntries (Stings de rotas)
+ * @returns - Todos as funcoes do render, o history e a store com todas suas funcoes
+ */
+
 const renderWithRouteReduxAndContext = (
   component,
   {
