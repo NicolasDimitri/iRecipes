@@ -16,10 +16,10 @@ export default function Feed({ styles, item }) {
     const link = `http://localhost:3000${path.replace(':id', item.id)}`;
     navigator.clipboard.writeText(link)
       .then(() => {
-        alert('Link copied!'); // eslint-disable-line no-alert
+        global.alert('Link copied!');
         setShareIcon(shared);
       })
-      .catch((err) => alert('Something went wrong ', err)); // eslint-disable-line no-alert
+      .catch((err) => global.alert('Something went wrong ', err));
   }
 
   const manageFavorites = () => {
