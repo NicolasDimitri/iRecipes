@@ -1,6 +1,7 @@
 import propTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import AplicationContext from '../context/AplicationContext';
 import like from '../images/postLikeIcon.svg';
 import share from '../images/postShareIcon.svg';
 import styles from '../styles/Exibition.module.css';
@@ -10,7 +11,7 @@ export default function ExibitionComponent({
   index,
 }) {
   const { path } = useRouteMatch();
-
+  const { resetSearchInput } = useContext(AplicationContext);
   const addEntry = () => {
     const obj = {
       id,
@@ -42,6 +43,7 @@ export default function ExibitionComponent({
       <Link
         to={ `/${path.replace('/', '')}/${id}` }
         data-testid={ `${index}-recipe-card` }
+        onClick={ resetSearchInput }
       >
         <img
           className={ styles.hero }

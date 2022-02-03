@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import AplicationContext from './AplicationContext';
 
 function AplicationProvider({ children }) {
@@ -26,6 +26,12 @@ function AplicationProvider({ children }) {
     setRenderButton(!renderButton);
   };
 
+  const resetSearchInput = () => {
+    if (renderButton) {
+      toggleSearchBar();
+    }
+  };
+
   const stateValue = {
     renderButton,
     toggleSearchBar,
@@ -37,6 +43,7 @@ function AplicationProvider({ children }) {
     setSearchInput,
     selectRadio,
     setSelectRadio,
+    resetSearchInput,
   };
 
   return (
