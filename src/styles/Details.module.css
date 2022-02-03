@@ -1,19 +1,27 @@
-.box { border: solid 1px var(--main-border-color);
+.box {
+  border: solid 1px var(--main-border-color);
   margin-top: 3vh;
   padding: 20px; }
 
 .box h1 {
-  font-size: 19pt;
+  font-size: 20pt;
   padding: 5px 0;
+  line-height: 20pt;
 }
 
-.box h1, h3 {
+.box h1, .category {
   font-family: Amaranth , serif;
   margin: 0 19px;
 }
 
-.box h3 { border-bottom: solid 0.1em var(--main-border-color);
-  padding: 5px 0; }
+.box .category {
+  background-color: var(--main-border-color);
+  padding: 5px 11px;
+  width: max-content;
+  font-size: 10pt;
+  letter-spacing: 2px;
+  border-radius: 25px;
+}
 
 .box h4 { border-bottom: solid 0.1em var(--main-primary-color);
   margin-bottom: 11px;
@@ -24,41 +32,52 @@
   object-fit: cover;
   width: 100%; }
 
-.ingredients {
+.box_gray {
   background-color: var(--main-border-color);
   border-radius: 5px;
   margin: 20px 19px;
   padding: 20px 15px;
 }
 
+.feed { display: flex; align-items: center; }
+
+.feed img { width: 100%; height: 100%;}
+
 .button {
   background: none;
+  margin: 0 11px;
   padding: 0;
-  width: 40px;
+  width: 29px;
+  overflow: hidden;
 }
 
-
-.feedback { vertical-align: center; }
-
-.feedback img { height: 40px;}
-
-.btnStartRecipe {
-  position: fixed;
-  bottom: 0;
+.recommended {
+  padding-bottom: 11px;
+  overflow-x: auto;
 }
 
+.recommended::-webkit-scrollbar {
+  margin: 7px; 
+  background: rgb(000, 000, 000, .9);
+  width: 5px;
+  height: 7px;
+}
 
-/* .box {
-  position: fixed;
-  top: 0;
+.recommended::-webkit-scrollbar-thumb { background-color: var(--main-secondary-color); }
+.recommended a { text-decoration: none; }
+
+.recommended_card { padding: 5px;  margin-right: 7px; border: solid 0.1em var(--main-secondary-color); }
+
+.recommended_card_title {
+  display: flex;
+  justify-content: space-around;
   width: 100%;
+  
+  align-items: center;
+
+  color: var(--main-text-color);
 }
 
-.title {
-  position: absolute;
-  bottom: 11px;
-  left: 50%;
-  font-family: 'Amaranth', serif;
-  font-size: 30pt;
-  transform: translateX(-50%);
-} */
+.recommended_card_title h1 { margin: 0; font-size: 14pt;}
+.recommended_card_title p { font-size: 10pt;}
+.recommended_card img { width: 240px; height: 180px; object-fit: cover;}
