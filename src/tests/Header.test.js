@@ -1,4 +1,20 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import { Router } from 'react-router';
-import { createMemoryHistory } from 'history';
+import renderWithRouteReduxAndContext from './renderWithRouteReduxAndContext';
+import Header from '../components/Header';
+
+describe('Testando o componente Header', () => {
+  it('inicia', () => {
+    const providerProps = {
+      value: {
+        renderButton: false,
+      },
+    };
+
+    const { history } = renderWithRouteReduxAndContext(
+      <Header title="testando" renderExplore />,
+      { providerProps, initialEntries: ['/'] },
+    );
+
+    console.log(history);
+  });
+});

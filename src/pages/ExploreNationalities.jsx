@@ -18,7 +18,7 @@ export default function ExploreNationalities() {
   useEffect(() => {
     fetchMealsNacionality().then((r) => setSelectNationality(r.data));
     dispatch(requestFoodsToAPI());
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Header title="Explore Nationalities" />
