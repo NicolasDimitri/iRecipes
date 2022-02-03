@@ -5,22 +5,27 @@
 
 .box h1 {
   font-size: 20pt;
+  margin: 0 19px;
   padding: 5px 0;
   line-height: 20pt;
 }
 
 .box h1, .category {
   font-family: Amaranth , serif;
-  margin: 0 19px;
 }
 
 .box .category {
   background-color: var(--main-border-color);
+  margin: 5px 7px;
   padding: 5px 11px;
   width: max-content;
   font-size: 10pt;
   letter-spacing: 2px;
   border-radius: 25px;
+}
+
+.box .category:first-child {
+  margin-left: 19px;
 }
 
 .box h4 { border-bottom: solid 0.1em var(--main-primary-color);
@@ -80,4 +85,27 @@
 
 .recommended_card_title h1 { margin: 0; font-size: 14pt;}
 .recommended_card_title p { font-size: 10pt;}
-.recommended_card img { width: 240px; height: 180px; object-fit: cover;}
+
+/* .recommended_card img { width: 150px; height: 370px; object-fit: cover;} */
+
+.event_button {
+  background-color: rgba(112, 250, 84, 0.9);
+  margin: 5px 0; 
+  padding: 19px 0;
+
+  left: 0;
+  bottom: 0;
+
+  font-family: 'Amaranth', serif;
+  font-size: 14pt;
+  text-transform: uppercase;
+  border-radius: 0;
+}
+
+@media screen and (max-width: 800px){
+  .recommended_card img { width: 140px; height: 370px; object-fit: cover; }
+}
+
+@media screen and (min-width: 801px){
+  .recommended_card img { width: 240px; height: 280px; object-fit: cover; }
+}
