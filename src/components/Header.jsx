@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 import AplicationContext from '../context/AplicationContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';

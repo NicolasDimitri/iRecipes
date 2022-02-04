@@ -8,6 +8,8 @@ global.fetch = jest.fn(() => Promise.resolve({
   json: () => Promise.resolve('Resolveu'),
 }));
 
+global.alert = jest.fn(() => 'ola');
+
 const SEARCH_BTN = 'search-btn';
 const SEARCH_INPUT = 'search-input';
 const INPUT_SEARCH_RADIO = 'name-search-radio';
@@ -15,8 +17,6 @@ const EXEC_SEARCH_BTN = 'exec-search-btn';
 const INGREDIENT_SEARCH_RADIO = 'ingredient-search-radio';
 const FIRST_LETTER_INPUT_RADIO = 'first-letter-search-radio';
 describe('Testando o componente SearchBar (Foods)', () => {
-  window.alert = jest.fn(() => 'ola');
-
   beforeEach(() => {
     fetch.mockClear();
     const initialEntries = ['/foods'];
@@ -45,6 +45,16 @@ describe('Testando o componente SearchBar (Foods)', () => {
       expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?f=a');
       expect(fetch).toHaveBeenCalledTimes(1);
     });
+  it('Testando se exibe um alerte caso o numero de letras e diferente de 1', () => {
+    userEvent.click(screen.getByTestId(SEARCH_BTN));
+    userEvent.type(screen.getByTestId(SEARCH_INPUT), 'aaa');
+    expect(screen.getByTestId(SEARCH_INPUT)).toHaveValue('aaa');
+    userEvent.click(screen.getByTestId('first-letter-search-radio'));
+    userEvent.click(screen.getByTestId(EXEC_SEARCH_BTN));
+    expect(alert).toHaveBeenCalledTimes(1);
+    expect(alert).toHaveBeenCalledWith('Your search must have only 1 (one) character');
+    expect(fetch).not.toHaveBeenCalled();
+  });
   it('Testando se ao pesquisar por Ingredient o endpoint correto e chamado', async () => {
     userEvent.click(screen.getByTestId(SEARCH_BTN));
     userEvent.type(screen.getByTestId(SEARCH_INPUT), 'Avocado');
@@ -54,11 +64,17 @@ describe('Testando o componente SearchBar (Foods)', () => {
     expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/filter.php?i=Avocado');
     expect(fetch).toHaveBeenCalledTimes(1);
   });
+  it(('Testa o parametro default do Switch (Foods)'), () => {
+    userEvent.click(screen.getByTestId(SEARCH_BTN));
+    userEvent.type(screen.getByTestId(SEARCH_INPUT), 'bbb');
+    expect(screen.getByTestId(SEARCH_INPUT)).toHaveValue('bbb');
+    userEvent.click(screen.getByTestId(EXEC_SEARCH_BTN));
+    expect(fetch).toHaveBeenCalled();
+    expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+  });
 });
 
 describe('Testando o componente SearchBar (Drinks)', () => {
-  window.alert = jest.fn(() => 'ola');
-
   beforeEach(() => {
     fetch.mockClear();
     const initialEntries = ['/drinks'];
@@ -90,6 +106,16 @@ describe('Testando o componente SearchBar (Drinks)', () => {
       expect(fetch).toHaveBeenCalledTimes(1);
     });
 
+  it('Testando se exibe um alerte caso o numero de letras e diferente de 1 (Drinks)',
+    () => {
+      userEvent.click(screen.getByTestId(SEARCH_BTN));
+      userEvent.click(screen.getByTestId('first-letter-search-radio'));
+      userEvent.click(screen.getByTestId(EXEC_SEARCH_BTN));
+      expect(alert).toHaveBeenCalledTimes(1);
+      expect(alert).toHaveBeenCalledWith('Your search must have only 1 (one) character');
+      expect(fetch).not.toHaveBeenCalled();
+    });
+
   it('Testando se ao pesquisar por Ingredient o endpoint correto e chamado', async () => {
     userEvent.click(screen.getByTestId(SEARCH_BTN));
     userEvent.type(screen.getByTestId(SEARCH_INPUT), 'Vodka');
@@ -98,5 +124,13 @@ describe('Testando o componente SearchBar (Drinks)', () => {
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BTN));
     expect(fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=Vodka');
     expect(fetch).toHaveBeenCalledTimes(1);
+  });
+  it(('Testa o parametro default do Switch (Drinks)'), () => {
+    userEvent.click(screen.getByTestId(SEARCH_BTN));
+    userEvent.type(screen.getByTestId(SEARCH_INPUT), 'aaa');
+    expect(screen.getByTestId(SEARCH_INPUT)).toHaveValue('aaa');
+    userEvent.click(screen.getByTestId(EXEC_SEARCH_BTN));
+    expect(fetch).toHaveBeenCalled();
+    expect(fetch).toHaveBeenCalledWith('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
   });
 });
