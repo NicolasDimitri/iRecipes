@@ -1,12 +1,19 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './renderWithRouter';
-import App from '../App';
+import renderWithRouteReduxAndContext from './renderWithRouteReduxAndContext';
+import Login from '../pages/Login';
 
-describe('2 - Login Page', () => {
+const CORRECT_EMAIL_TEST = 'linus_torvalds@mail.com';
+const WRONG_EMAIL_TEST = 'linus_torvaldsmail.com';
+const CORRECT_PASSWORD_TEST = '1234567';
+const WRONG_PASSWORD_TEST = '12345';
+const INPUT_EMAIL = screen.queryByTestId('email-input');
+const INPUT_PASSWORD = screen.queryByTestId('password-input');
+
+describe('Login Page', () => {
   beforeEach(() => {
-    renderWithRouter(<App />);
+    renderWithRouteReduxAndContext(<Login />);
   });
 
   it('Must have the title Login', () => {
@@ -15,10 +22,8 @@ describe('2 - Login Page', () => {
   });
 
   it('Must have the inputs email and password', () => {
-    const inputEmail = screen.getByRole('textbox');
-    const inputPassword = screen.getByTestId('password-input');
-    expect(inputEmail).toBeInTheDocument();
-    expect(inputPassword).toBeInTheDocument();
+    expect(INPUT_EMAIL).toBeDefined();
+    expect(INPUT_PASSWORD).toBeDefined();
   });
 
   it('Check that button is disabled', () => {
@@ -29,37 +34,37 @@ describe('2 - Login Page', () => {
 
   it('Tests if when typing invalid email the button has the attribute disabled', () => {
     const inputEmail = screen.getByRole('textbox');
-    const inputPassword = screen.getByTestId('password-input');
+    const inputPassword = screen.getByTestId('email-input');
     const btnLogin = screen.getByRole('button', { name: /enter/i });
-    const email = 'testmail.com';
-    const password = '1234567';
 
-    userEvent.type(inputEmail, email);
-    userEvent.type(inputPassword, password);
+    userEvent.type(inputEmail, WRONG_EMAIL_TEST);
+    userEvent.type(inputPassword, CORRECT_PASSWORD_TEST);
     expect(btnLogin).toHaveAttribute('disabled');
   });
 
-  it('Tests if typing invalid password the button has the attribute disabled', () => {
-    const inputEmail = screen.getByRole('textbox');
-    const inputPassword = screen.getByTestId('password-input');
+  it('Tests if typing invalid data the button has the attribute disabled', () => {
     const btnLogin = screen.getByRole('button', { name: /enter/i });
-    const email = 'test@mail.com';
-    const password = '12345';
 
-    userEvent.type(inputEmail, email);
-    userEvent.type(inputPassword, password);
+    userEvent.type(INPUT_EMAIL, WRONG_EMAIL_TEST);
+    userEvent.type(INPUT_PASSWORD, WRONG_PASSWORD_TEST);
     expect(btnLogin).toHaveAttribute('disabled');
   });
 
   it('Test if typing valid email and password the button is activated', () => {
-    const inputEmail = screen.getByRole('textbox');
-    const inputPassword = screen.getByTestId('password-input');
     const btnLogin = screen.getByRole('button', { name: /enter/i });
-    const email = 'test@mail.com';
-    const password = '1234567';
 
-    userEvent.type(inputEmail, email);
-    userEvent.type(inputPassword, password);
-    expect(btnLogin).not.toHaveAttribute('disabled');
+    userEvent.type(INPUT_EMAIL, CORRECT_EMAIL_TEST);
+    userEvent.type(INPUT_PASSWORD, CORRECT_PASSWORD_TEST);
+    // expect(INPUT_EMAIL).toHaveValue(CORRECT_EMAIL_TEST);
+    // expect(INPUT_PASSWORD).toHaveValue(CORRECT_PASSWORD_TEST);
+    expect(btnLogin).not.toBeDisabled();
+  });
+
+  it('Test if after login redirects to foods', () => {
+    const btnLogin = screen.getByRole('button', { name: /enter/i });
+    userEvent.click(btnLogin);
+    const heading = screen.queryByText('Foods');
+    console.log(heading);
+    expect(heading).toBeDefined();
   });
 });
