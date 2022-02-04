@@ -69,6 +69,7 @@ export default function SearchBar() {
         verifyLetterDrink(searchInput);
         break;
       default:
+        console.log('entrou default');
         dispatch(requestDrinksFromAPI());
       }
     }

@@ -2,9 +2,10 @@ import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { MemoryRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import rootReducer from '../redux/reducers';
 import AplicationProvider from '../context/AplicationProvider';
 
@@ -22,17 +23,20 @@ const renderWithRouteReduxAndContext = (
     initialState = {},
     store = createStore(rootReducer, initialState, applyMiddleware(thunk)),
     initialEntries = ['/'],
+    route = '/',
     history = createMemoryHistory({ initialEntries }),
   } = {},
 ) => ({
   ...render(
-    <Router history={ history }>
-      <Provider store={ store }>
-        <AplicationProvider>
-          {component}
-        </AplicationProvider>
-      </Provider>
-    </Router>,
+    <MemoryRouter initialEntries={ initialEntries }>
+      <Route path={ route }>
+        <Provider store={ store }>
+          <AplicationProvider>
+            {component}
+          </AplicationProvider>
+        </Provider>
+      </Route>
+    </MemoryRouter>,
   ),
   history,
   store,
