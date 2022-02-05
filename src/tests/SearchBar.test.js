@@ -40,7 +40,7 @@ describe('Testando o componente SearchBar (Foods)', () => {
       userEvent.click(screen.getByTestId(SEARCH_BTN));
       userEvent.type(screen.getByTestId(SEARCH_INPUT), 'a');
       expect(screen.getByTestId(SEARCH_INPUT)).toHaveValue('a');
-      userEvent.click(screen.getByTestId('first-letter-search-radio'));
+      userEvent.click(screen.getByTestId(FIRST_LETTER_INPUT_RADIO));
       userEvent.click(screen.getByTestId(EXEC_SEARCH_BTN));
       expect(fetch).toHaveBeenCalledWith('https://www.themealdb.com/api/json/v1/1/search.php?f=a');
       expect(fetch).toHaveBeenCalledTimes(1);
@@ -49,7 +49,7 @@ describe('Testando o componente SearchBar (Foods)', () => {
     userEvent.click(screen.getByTestId(SEARCH_BTN));
     userEvent.type(screen.getByTestId(SEARCH_INPUT), 'aaa');
     expect(screen.getByTestId(SEARCH_INPUT)).toHaveValue('aaa');
-    userEvent.click(screen.getByTestId('first-letter-search-radio'));
+    userEvent.click(screen.getByTestId(FIRST_LETTER_INPUT_RADIO));
     userEvent.click(screen.getByTestId(EXEC_SEARCH_BTN));
     expect(alert).toHaveBeenCalledTimes(1);
     expect(alert).toHaveBeenCalledWith('Your search must have only 1 (one) character');
@@ -109,7 +109,7 @@ describe('Testando o componente SearchBar (Drinks)', () => {
   it('Testando se exibe um alerte caso o numero de letras e diferente de 1 (Drinks)',
     () => {
       userEvent.click(screen.getByTestId(SEARCH_BTN));
-      userEvent.click(screen.getByTestId('first-letter-search-radio'));
+      userEvent.click(screen.getByTestId(FIRST_LETTER_INPUT_RADIO));
       userEvent.click(screen.getByTestId(EXEC_SEARCH_BTN));
       expect(alert).toHaveBeenCalledTimes(1);
       expect(alert).toHaveBeenCalledWith('Your search must have only 1 (one) character');
