@@ -1,3 +1,17 @@
+import { NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
+export const createNotification = (type) => {
+  const TIME_DEFAULT = 3000;
+  switch (type) {
+  case 'copy':
+    NotificationManager.success('Link copied!', '', TIME_DEFAULT);
+    break;
+  default:
+    NotificationManager.info('Error: No info message');
+  }
+};
+
 /**
  * Format the ingredients of recipes;
  * @function `formatIngredientsAPI`
