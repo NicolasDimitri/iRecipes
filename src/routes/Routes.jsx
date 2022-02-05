@@ -10,6 +10,7 @@ import ExploreNationalities from '../pages/ExploreNationalities';
 import FavoritesRecipes from '../pages/FavoritesRecipes';
 import Foods from '../pages/Foods';
 import Login from '../pages/Login';
+import NotFoundPage from '../pages/NotFoundPage';
 import Profile from '../pages/Profile';
 import RecipeDetails from '../pages/RecipeDetails';
 
@@ -44,6 +45,7 @@ export default function Routes() {
       <Route exact path="/profile" component={ Profile } />
       <Route exact path="/done-recipes" component={ DoneRecipes } />
       <Route exact path="/favorite-recipes" component={ FavoritesRecipes } />
+      <Route path="*" component={ NotFoundPage } />
     </Switch>
   );
 }
