@@ -11,7 +11,9 @@ export default function ExibitionComponent({
   index,
 }) {
   const { path } = useRouteMatch();
+
   const { resetSearchInput } = useContext(AplicationContext);
+
   const addEntry = () => {
     const obj = {
       id,

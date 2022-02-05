@@ -14,7 +14,11 @@ function Header({ title, renderExplore }) {
     <header className={ `box primary_color ${styles.box}` }>
       <div className="wrapper flex justify_content_between relative ">
         <nav>
-          <Link to="/profile" className={ styles.button } onClick={ resetSearchInput }>
+          <Link
+            to="/profile"
+            className={ styles.button }
+            onClick={ resetSearchInput }
+          >
             <img
               data-testid="profile-top-btn"
               src={ profileIcon }
@@ -26,7 +30,12 @@ function Header({ title, renderExplore }) {
         <h1 data-testid="page-title" className={ styles.title }>{ title }</h1>
         {
           renderExplore && (
-            <button type="button" className={ styles.button } onClick={ toggleSearchBar }>
+            <button
+              data-testid="search-btn"
+              type="button"
+              className={ styles.button }
+              onClick={ toggleSearchBar }
+            >
               <img
                 data-testid="search-top-btn"
                 src={ searchIcon }
