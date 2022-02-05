@@ -91,6 +91,7 @@ export default function RecipeDetails({ match: { params: { id } }, history }) {
                     type="checkbox"
                     name={ `${i}-${ing[0]}` }
                     value={ ing[0] }
+                    className={ styles.checkbox }
                     onChange={ handleCheckbox }
                     checked={
                       verifyLocalStorage('inProgressRecipes', [property, id], ing[0])

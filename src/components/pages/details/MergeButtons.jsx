@@ -27,7 +27,7 @@ export default function MergeButtons({ styles, path, data, history }) {
   });
 
   if (!path.includes('in-progress')
-    && !doneRecipes.some(({ id }) => id === data.id)) {
+    && reload && !doneRecipes.some(({ id }) => id === data.id)) {
     return (
       <StartButton
         styles={ styles }
