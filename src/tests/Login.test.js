@@ -27,17 +27,17 @@ describe('Login Page', () => {
     renderWithRouter(<Login />);
     const btnLogin = screen.getByRole('button', { name: /enter/i });
     expect(btnLogin).toBeInTheDocument();
-    expect(btnLogin).toHaveAttribute('disabled');
+    expect(btnLogin).toBeDisabled();
   });
 
   it('Tests if when typing invalid email the button has the attribute disabled', () => {
     renderWithRouter(<Login />);
-    const inputEmail = screen.getByRole('textbox');
-    const inputPassword = screen.getByTestId('email-input');
+    // const inputEmail = screen.getByRole('textbox');
+    // const inputPassword = screen.getByTestId('email-input');
     const btnLogin = screen.getByRole('button', { name: /enter/i });
 
-    userEvent.type(inputEmail, WRONG_EMAIL_TEST);
-    userEvent.type(inputPassword, CORRECT_PASSWORD_TEST);
+    userEvent.type(INPUT_EMAIL, WRONG_EMAIL_TEST);
+    userEvent.type(INPUT_PASSWORD, CORRECT_PASSWORD_TEST);
     expect(btnLogin).toHaveAttribute('disabled');
   });
 
