@@ -44,6 +44,14 @@
   padding: 20px 15px;
 }
 
+input[type="checkbox"] {
+  margin: 0 5px 0 0;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  text-decoration: none solid rgb(0, 0, 0);
+}
+
 .feed { display: flex; align-items: center; }
 
 .feed img { width: 100%; height: 100%;}

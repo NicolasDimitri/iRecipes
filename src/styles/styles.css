@@ -105,6 +105,8 @@ body {
 
 .flex_now_wrap { flex-wrap: nowrap;}
 
+.align_items_center { align-items: center; }
+.vertical_align_middle { vertical-align: middle; }
 
 /* Forms */
 input {
