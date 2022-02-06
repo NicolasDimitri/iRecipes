@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { NotificationContainer } from 'react-notifications';
-import { useRouteMatch } from 'react-router-dom';
 import { createNotification } from '../helpers/index';
 import isHearth from '../images/blackHeartIcon.svg';
 import shared from '../images/sharedIcon.svg';
@@ -9,14 +8,12 @@ import share from '../images/shareIcon.svg';
 import hearth from '../images/whiteHeartIcon.svg';
 
 export default function Feed({ styles, item }) {
-  const { path } = useRouteMatch();
-
   const [shareIcon, setShareIcon] = useState(share);
   const [hearthIcon, setHearthIcon] = useState(hearth);
+  const type = item.type.match(/food|drink/)[0];
 
   function copyToClipboard() {
-    let link = `http://localhost:3000${path.replace(':id', item.id)}`;
-    if (link.includes('/in-progress')) link = link.replace('/in-progress', '');
+    const link = `http://localhost:3000/${item.type}/${item.id}`;
     navigator.clipboard.writeText(link);
     setShareIcon(shared);
     createNotification('copy');
@@ -27,7 +24,7 @@ export default function Feed({ styles, item }) {
     // const type = path.match(RegExp(/food|drink/, ''))[0];
     const object = {
       id: item.id,
-      type: item.type,
+      type,
       nationality: item.location || '',
       category: item.category || '',
       alcoholicOrNot: item.isAlcolic || '',
