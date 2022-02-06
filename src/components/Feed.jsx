@@ -7,13 +7,13 @@ import shared from '../images/sharedIcon.svg';
 import share from '../images/shareIcon.svg';
 import hearth from '../images/whiteHeartIcon.svg';
 
-export default function Feed({ styles, item }) {
+export default function Feed({ styles, item, tshare, tfav }) {
   const [shareIcon, setShareIcon] = useState(share);
   const [hearthIcon, setHearthIcon] = useState(hearth);
   const type = item.type.match(/food|drink/)[0];
 
   function copyToClipboard() {
-    const link = `http://localhost:3000/${item.type}/${item.id}`;
+    const link = `http://localhost:3000/${type}s/${item.id}`;
     navigator.clipboard.writeText(link);
     setShareIcon(shared);
     createNotification('copy');
@@ -72,9 +72,8 @@ export default function Feed({ styles, item }) {
         style={ { transform: 'rotateZ(-35deg)', marginBottom: '7px' } }
         className={ `${styles.button} ${styles.copyButton}` }
         onClick={ copyToClipboard }
-        data-testid="share-btn"
       >
-        <img src={ shareIcon } alt="share icon" />
+        <img data-testid={ tshare } src={ shareIcon } alt="share icon" />
       </button>
       <button
         type="button"
@@ -82,7 +81,7 @@ export default function Feed({ styles, item }) {
         onClick={ manageFavorites }
 
       >
-        <img data-testid="favorite-btn" src={ hearthIcon } alt="black heart icon" />
+        <img data-testid={ tfav } src={ hearthIcon } alt="black heart icon" />
       </button>
       <NotificationContainer />
     </div>
@@ -92,4 +91,11 @@ export default function Feed({ styles, item }) {
 Feed.propTypes = {
   styles: PropTypes.objectOf(PropTypes.any).isRequired,
   item: PropTypes.objectOf(PropTypes.any).isRequired,
+  tshare: PropTypes.string,
+  tfav: PropTypes.string,
+};
+
+Feed.defaultProps = {
+  tshare: 'share-btn',
+  tfav: 'favorite-btn',
 };
