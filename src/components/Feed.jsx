@@ -72,8 +72,8 @@ export default function Feed({ styles, item }) {
     <div className={ `flex ${styles.feed}` }>
       <button
         type="button"
-        style={ { transform: 'rotateZ(-35deg)', marginBottom: '7px', width: '25px' } }
-        className={ styles.button }
+        style={ { transform: 'rotateZ(-35deg)', marginBottom: '7px' } }
+        className={ `${styles.button} ${styles.copyButton}` }
         onClick={ copyToClipboard }
         data-testid="share-btn"
       >
