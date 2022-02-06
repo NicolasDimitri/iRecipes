@@ -49,7 +49,8 @@ export const verifyLocalStorage = (key, input, value) => {
       (Array.isArray(storage) || typeof storage === 'string')
       && storage.includes(value)
     ) result = true;
-    if (typeof storage === 'object' && Object.hasOwn(storage, value)) result = true;
+    if (typeof storage === 'object'
+      && Object.prototype.hasOwnProperty.call(storage, value)) result = true;
   });
   return result;
 };
