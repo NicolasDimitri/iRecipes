@@ -8,7 +8,7 @@ function AplicationProvider({ children }) {
   const [darkMode, toggleDarkMode] = useState(true);
   const [searchInput, setSearchInput] = useState('');
   const [selectRadio, setSelectRadio] = useState('');
-  const [category, setCategory] = useState('');
+  const [reload, setReload] = useState(false);
 
   /**
    * Altera o tema da aplicaçao para dark ou light mode
@@ -17,6 +17,11 @@ function AplicationProvider({ children }) {
    */
   const changeTheme = () => {
     toggleDarkMode(!darkMode);
+  };
+
+  const reloader = () => {
+    console.log('eu');
+    setReload((previous) => !previous);
   };
 
   /**
@@ -45,8 +50,8 @@ function AplicationProvider({ children }) {
     selectRadio,
     setSelectRadio,
     resetSearchInput,
-    category,
-    setCategory,
+    reload,
+    reloader,
   };
 
   return (
