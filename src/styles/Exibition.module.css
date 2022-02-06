@@ -1,7 +1,7 @@
 .box {
+  border: solid 1px var(--main-border-color);
   display: block;
   margin: 19px 0;
-  border: solid 1px var(--main-border-color);
 }
 
 .box h1 {
@@ -14,8 +14,8 @@
 
 .hero {
   height: 600px;
-  width: 100%;
   object-fit: cover;
+  width: 100%;
 }
 
 .feedback {
@@ -24,7 +24,11 @@
 
 .feedback img { width: 30px; }
 
-.feed {margin: 0 auto; width: 70%; display: flex; align-items: center;  justify-content: space-around;}
+.feed { align-items: center;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 70%;}
 
 .feed img { height: 100%;
   width: 100%;}
