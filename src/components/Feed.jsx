@@ -24,10 +24,10 @@ export default function Feed({ styles, item }) {
 
   const manageFavorites = () => {
     const favorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    const type = path.match(RegExp(/food|drink/, ''))[0];
+    // const type = path.match(RegExp(/food|drink/, ''))[0];
     const object = {
       id: item.id,
-      type,
+      type: item.type,
       nationality: item.location || '',
       category: item.category || '',
       alcoholicOrNot: item.isAlcolic || '',

@@ -1,22 +1,61 @@
-import React from 'react';
-import Button from '../components/Button';
+import React, { useEffect, useState } from 'react';
+import Feed from '../components/Feed';
 import Header from '../components/Header';
 import style from '../styles/FavoriteRecipes.module.css';
+import styles from '../styles/Details.module.css';
+
+const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
 
 export default function FavoritesRecipes() {
-  const favoriteRecipes = JSON.parse(localStorage.getItem('favorites'));
+  const [favorites, setFavorites] = useState(favoriteRecipes);
+
+  const filterByAll = () => setFavorites(favoriteRecipes);
+
+  const filterByFoods = () => {
+    const filter = favoriteRecipes.filter((recipe) => recipe.type === 'foods');
+    setFavorites(filter);
+  };
+
+  const filterByDrinks = () => {
+    const filter = favoriteRecipes.filter((recipe) => recipe.type === 'drinks');
+    setFavorites(filter);
+  };
+
+  useEffect(() => {
+    setFavorites(favorites);
+  }, [favorites]);
+
+  console.log(favorites);
 
   return (
     <>
       <Header title="Favorite Recipes" renderExplore={ false } />
       <div className={ style['btn-div'] }>
-        <Button dataTestid="filter-by-all-btn" value="All" />
-        <Button dataTestid="filter-by-food-btn" value="Food" />
-        <Button dataTestid="filter-by-drink-btn" value="Drinks" />
+        <button
+          type="button"
+          data-Testid="filter-by-all-btn"
+          onClick={ () => filterByAll() }
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-Testid="filter-by-food-btn"
+          onClick={ () => filterByFoods() }
+        >
+          Foods
+        </button>
+        <button
+          type="button"
+          data-Testid="filter-by-drink-btn"
+          onClick={ () => filterByDrinks() }
+        >
+          Drinks
+        </button>
       </div>
       <div className={ style['cards-list'] }>
         {
-          favoriteRecipes.map((fav) => (
+          favorites.map((fav) => (
             <div key={ fav.id } className={ style.card_container }>
               <div className="card u-clearfix">
                 <div>
@@ -49,6 +88,7 @@ export default function FavoritesRecipes() {
                     { fav.title }
                   </div>
                 </div>
+                <Feed styles={ styles } item={ fav } />
               </div>
             </div>
           ))
