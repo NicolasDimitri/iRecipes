@@ -20,7 +20,7 @@ function AplicationProvider({ children }) {
   };
 
   /**
-   * Altera o status do renderButton
+   * Altera o status do renderButon
    *@function toggleSearchBar;
    */
   const toggleSearchBar = () => {
