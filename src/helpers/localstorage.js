@@ -61,8 +61,10 @@ export const verifyLocalStorage = (key, input, value) => {
 /* ------------------------------------------------- */
 /* ------------------------------------------------- */
 /* ------------------------------------------------- */
-export const verifyAlready = (object, id, value) => Object.hasOwn(object, id)
-    && object[id].includes(value);
+export const verifyAlready = (object, id, value) => (
+  Object.prototype.hasOwnProperty.call(object, id)
+    && object[id].includes(value)
+);
 
 export const updateInProgress = (key, path, id, value) => {
   const storage = getLocalStorage(key);
