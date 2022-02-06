@@ -8,6 +8,7 @@ function AplicationProvider({ children }) {
   const [darkMode, toggleDarkMode] = useState(true);
   const [searchInput, setSearchInput] = useState('');
   const [selectRadio, setSelectRadio] = useState('');
+  const [category, setCategory] = useState('');
 
   /**
    * Altera o tema da aplicaçao para dark ou light mode
@@ -44,6 +45,8 @@ function AplicationProvider({ children }) {
     selectRadio,
     setSelectRadio,
     resetSearchInput,
+    category,
+    setCategory,
   };
 
   return (
