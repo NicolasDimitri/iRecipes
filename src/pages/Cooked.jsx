@@ -7,12 +7,13 @@ import { getLocalStorage } from '../helpers/localstorage';
 import styles from '../styles/Cooked.module.css';
 
 export default function Cooked() {
-  const storage = getLocalStorage('doneRecipes');
+  const storage = getLocalStorage('doneRecipes') || [];
   const [search, setSearch] = useState('');
 
-  if (!storage) return (<Loading />);
+  const filtered = storage
+    && storage.filter((item) => item.type.match(RegExp(search, 'g')));
 
-  const filtered = storage.filter((item) => item.type.match(RegExp(search, 'g')));
+  if (!filtered) return (<Loading />);
 
   return (
     <>
