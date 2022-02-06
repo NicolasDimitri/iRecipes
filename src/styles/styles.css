@@ -108,6 +108,7 @@ body {
 .flex_direction_row { flex-direction: row; }
 
 .flex_now_wrap { flex-wrap: nowrap;}
+.flex_wrap { flex-wrap: wrap; }
 
 .align_items_center { align-items: center; }
 
