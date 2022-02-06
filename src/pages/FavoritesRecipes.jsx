@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Feed from '../components/Feed';
 import Header from '../components/Header';
-import style from '../styles/FavoriteRecipes.module.css';
+import { getLocalStorage, setLocalStorage } from '../helpers/localstorage';
 import styles from '../styles/Details.module.css';
-
-const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+import style from '../styles/FavoriteRecipes.module.css';
 
 export default function FavoritesRecipes() {
-  const [favorites, setFavorites] = useState(favoriteRecipes);
+  const [favorites, setFavorites] = useState(getLocalStorage('favoriteRecipes'));
 
   const filterByAll = () => setFavorites(favoriteRecipes);
 
@@ -22,46 +21,50 @@ export default function FavoritesRecipes() {
   };
 
   useEffect(() => {
+    if (!favorites) {
+      setLocalStorage('favoriteRecipes', []);
+    }
     setFavorites(favorites);
   }, [favorites]);
 
-  console.log(favorites);
-
+  if (!favorites) return ('');
   return (
     <>
       <Header title="Favorite Recipes" renderExplore={ false } />
       <div className={ style['btn-div'] }>
         <button
           type="button"
-          data-Testid="filter-by-all-btn"
+          data-testid="filter-by-all-btn"
           onClick={ () => filterByAll() }
         >
           All
         </button>
         <button
           type="button"
-          data-Testid="filter-by-food-btn"
+          data-testid="filter-by-food-btn"
           onClick={ () => filterByFoods() }
         >
           Foods
         </button>
         <button
           type="button"
-          data-Testid="filter-by-drink-btn"
+          data-testid="filter-by-drink-btn"
           onClick={ () => filterByDrinks() }
         >
           Drinks
         </button>
       </div>
       <div className={ style['cards-list'] }>
+        {console.log('teste')}
         {
-          favorites.map((fav) => (
+
+          favorites && favorites.map((fav, i) => (
             <div key={ fav.id } className={ style.card_container }>
               <div className="card u-clearfix">
                 <div>
                   <img
                     src={ fav.image }
-                    data-testid={ `${fav.id}-horizontal-image` }
+                    data-testid={ `${i}-horizontal-image` }
                     alt=""
                     className={ style['card-media'] }
                   />
@@ -70,25 +73,33 @@ export default function FavoritesRecipes() {
                   <div className={ style['card-info'] }>
                     <span
                       className={ style['card-category'] }
-                      data-testid={ `${fav.category}-horizontal-top-text` }
+                      data-testid={ `${i}-horizontal-top-text` }
                     >
-                      { fav.category }
+                      {`${fav?.nationality}`}
+                      {`${fav?.alcoholicOrNot} - `}
+                      {`${fav?.category}`}
+
                     </span>
                     <h2
                       className={ style['card-location'] }
-                      data-testid={ `${fav.id}-${fav.location}-horizontal-tag` }
+                      data-testid={ `${i}-${fav.location}-horizontal-tag` }
                     >
                       { fav.location }
                     </h2>
                   </div>
                   <div
                     className={ style['card-title'] }
-                    data-testid={ `${fav.title}-horizontal-name` }
+                    data-testid={ `${i}-horizontal-name` }
                   >
-                    { fav.title }
+                    { fav.name }
                   </div>
                 </div>
-                <Feed styles={ styles } item={ fav } />
+                <Feed
+                  styles={ styles }
+                  item={ fav }
+                  tshare={ `${i}-horizontal-share-btn` }
+                  tfav={ `${i}-horizontal-favorite-btn` }
+                />
               </div>
             </div>
           ))
