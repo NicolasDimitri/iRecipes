@@ -1,5 +1,8 @@
-.box { border: solid 1px var(--main-border-color);
-  margin-top: 3vh; }
+.box {
+  display: block;
+  margin: 19px 0;
+  border: solid 1px var(--main-border-color);
+}
 
 .box h1 {
   font-family: Amaranth , serif;
@@ -12,6 +15,7 @@
 .hero {
   height: 600px;
   width: 100%;
+  object-fit: cover;
 }
 
 .feedback {
@@ -20,6 +24,19 @@
 
 .feedback img { width: 30px; }
 
-button {
-  background-color: none;
+.feed {margin: 0 auto; width: 70%; display: flex; align-items: center;  justify-content: space-around;}
+
+.feed img { height: 100%;
+  width: 100%;}
+
+.button {
+  background: none;
+  margin: 0 11px;
+  overflow: hidden;
+  padding: 0;
+  width: 34px;
+}
+
+.copyButton {
+  width: 30px;
 }
