@@ -23,8 +23,9 @@ export default function Foods() {
   return (
     <>
       <Header title="Foods" />
-      <h1 style={ { display: 'none' } }>Foods page</h1>
+
       <main>
+        <h1 style={ { display: 'none' } }>Foods page</h1>
         {
           data.length > 0 && (
             data.map((item, index) => {

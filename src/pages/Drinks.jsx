@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ExibitionComponent from '../components/ExibitionComponent';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -21,7 +21,8 @@ export default function Drinks() {
   return (
     <>
       <Header title="Drinks" />
-      <main style={ { margin: '90px 0' } } className="flex flex_direction_column">
+      <main>
+        <h1 style={ { display: 'none' } }>Drinks page</h1>
         {
           data.length > 0 && (
             data.map((item, index) => {
@@ -29,7 +30,7 @@ export default function Drinks() {
                 return (
                   <ExibitionComponent
                     key={ item.title }
-                    exibitionData={ item }
+                    data={ item }
                     index={ index }
                   />
                 );
