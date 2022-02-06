@@ -1,33 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Feed from '../components/Feed';
 import Header from '../components/Header';
-import { getLocalStorage, setLocalStorage } from '../helpers/localstorage';
+import Loading from '../components/Loading';
+import AplicationContext from '../context/AplicationContext';
+import { getLocalStorage } from '../helpers/localstorage';
 import styles from '../styles/Details.module.css';
 import style from '../styles/FavoriteRecipes.module.css';
 
 export default function FavoritesRecipes() {
-  const [favorites, setFavorites] = useState(getLocalStorage('favoriteRecipes'));
+  const storage = getLocalStorage('favoriteRecipes');
+  const [search, setSearch] = useState('');
+  const { reload } = useContext(AplicationContext);
 
-  const filterByAll = () => setFavorites(favoriteRecipes);
-
-  const filterByFoods = () => {
-    const filter = favoriteRecipes.filter((recipe) => recipe.type === 'foods');
-    setFavorites(filter);
-  };
-
-  const filterByDrinks = () => {
-    const filter = favoriteRecipes.filter((recipe) => recipe.type === 'drinks');
-    setFavorites(filter);
-  };
+  const favorites = storage.filter((item) => item.type.match(RegExp(search, 'g')));
 
   useEffect(() => {
-    if (!favorites) {
-      setLocalStorage('favoriteRecipes', []);
-    }
-    setFavorites(favorites);
-  }, [favorites]);
+    if (!favorites) setLocalStorage('favoriteRecipes', []);
+  }, [favorites, reload]);
 
-  if (!favorites) return ('');
+  if (!storage) return <Loading />;
   return (
     <>
       <Header title="Favorite Recipes" renderExplore={ false } />
@@ -35,21 +27,21 @@ export default function FavoritesRecipes() {
         <button
           type="button"
           data-testid="filter-by-all-btn"
-          onClick={ () => filterByAll() }
+          onClick={ () => setSearch('') }
         >
           All
         </button>
         <button
           type="button"
           data-testid="filter-by-food-btn"
-          onClick={ () => filterByFoods() }
+          onClick={ () => setSearch('food') }
         >
           Foods
         </button>
         <button
           type="button"
           data-testid="filter-by-drink-btn"
-          onClick={ () => filterByDrinks() }
+          onClick={ () => setSearch('drink') }
         >
           Drinks
         </button>
@@ -58,51 +50,58 @@ export default function FavoritesRecipes() {
         {console.log('teste')}
         {
 
-          favorites && favorites.map((fav, i) => (
-            <div key={ fav.id } className={ style.card_container }>
-              <div className="card u-clearfix">
-                <div>
-                  <img
-                    src={ fav.image }
-                    data-testid={ `${i}-horizontal-image` }
-                    alt=""
-                    className={ style['card-media'] }
+          favorites && favorites.map((fav, i) => {
+            const path = fav.type.match(/food|drink/)[0];
+            return (
+              <div key={ fav.id } className={ style.card_container }>
+                <div className="card u-clearfix">
+                  <div>
+                    <Link to={ `${path}s/${fav.id}` }>
+                      <img
+                        src={ fav.image }
+                        data-testid={ `${i}-horizontal-image` }
+                        alt=""
+                        className={ style['card-media'] }
+                      />
+                    </Link>
+                  </div>
+                  <div className={ style['card-body'] }>
+                    <div className={ style['card-info'] }>
+                      <span
+                        className={ style['card-category'] }
+                        data-testid={ `${i}-horizontal-top-text` }
+                      >
+                        {`${fav?.nationality}`}
+                        {`${fav?.alcoholicOrNot} - `}
+                        {`${fav?.category}`}
+
+                      </span>
+                      <h2
+                        className={ style['card-location'] }
+                        data-testid={ `${i}-${fav.location}-horizontal-tag` }
+                      >
+                        { fav.location }
+                      </h2>
+                    </div>
+                    <Link to={ `${path}s/${fav.id}` }>
+                      <div
+                        className={ style['card-title'] }
+                        data-testid={ `${i}-horizontal-name` }
+                      >
+                        { fav.name }
+                      </div>
+                    </Link>
+                  </div>
+                  <Feed
+                    styles={ styles }
+                    item={ fav }
+                    tshare={ `${i}-horizontal-share-btn` }
+                    tfav={ `${i}-horizontal-favorite-btn` }
                   />
                 </div>
-                <div className={ style['card-body'] }>
-                  <div className={ style['card-info'] }>
-                    <span
-                      className={ style['card-category'] }
-                      data-testid={ `${i}-horizontal-top-text` }
-                    >
-                      {`${fav?.nationality}`}
-                      {`${fav?.alcoholicOrNot} - `}
-                      {`${fav?.category}`}
-
-                    </span>
-                    <h2
-                      className={ style['card-location'] }
-                      data-testid={ `${i}-${fav.location}-horizontal-tag` }
-                    >
-                      { fav.location }
-                    </h2>
-                  </div>
-                  <div
-                    className={ style['card-title'] }
-                    data-testid={ `${i}-horizontal-name` }
-                  >
-                    { fav.name }
-                  </div>
-                </div>
-                <Feed
-                  styles={ styles }
-                  item={ fav }
-                  tshare={ `${i}-horizontal-share-btn` }
-                  tfav={ `${i}-horizontal-favorite-btn` }
-                />
               </div>
-            </div>
-          ))
+            );
+          })
         }
       </div>
     </>
