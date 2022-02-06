@@ -9,7 +9,7 @@ import styles from '../styles/Details.module.css';
 import style from '../styles/FavoriteRecipes.module.css';
 
 export default function FavoritesRecipes() {
-  const storage = getLocalStorage('favoriteRecipes');
+  const storage = getLocalStorage('favoriteRecipes') || [];
   const [search, setSearch] = useState('');
   const { reload } = useContext(AplicationContext);
 
