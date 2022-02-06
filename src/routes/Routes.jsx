@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import DoneRecipes from '../pages/DoneRecipes';
+import Cooked from '../pages/Cooked';
 import Drinks from '../pages/Drinks';
 import Explore from '../pages/Explore';
 import ExploreDrinks from '../pages/ExploreDrinks';
@@ -43,7 +43,7 @@ export default function Routes() {
         component={ ExploreNationalities }
       />
       <Route exact path="/profile" component={ Profile } />
-      <Route exact path="/done-recipes" component={ DoneRecipes } />
+      <Route exact path="/done-recipes" component={ Cooked } />
       <Route exact path="/favorite-recipes" component={ FavoritesRecipes } />
       <Route path="*" component={ NotFoundPage } />
     </Switch>
