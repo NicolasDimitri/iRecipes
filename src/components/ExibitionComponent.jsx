@@ -13,14 +13,15 @@ export default function ExibitionComponent({ data, index }) {
 
   return (
     <article className={ `primary_color ${styles.box}` }>
-      <h1 data-testid={ `${index}-card-name` }>
-        {title}
-      </h1>
       <Link
         to={ `/${path.replace('/', '')}/${id}` }
         data-testid={ `${index}-recipe-card` }
         onClick={ resetSearchInput }
       >
+        <h1 data-testid={ `${index}-card-name` }>
+          {title}
+        </h1>
+
         <img
           className={ styles.hero }
           data-testid={ `${index}-card-img` }

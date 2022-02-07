@@ -1,5 +1,5 @@
 import {
-  REQUEST_DRINKS,
+  REQUEST_CATEGORIES, REQUEST_DRINKS,
   REQUEST_FOODS,
   REQUEST_INGREDIENTS,
   REQUEST_RECIPE_ID,
@@ -12,6 +12,7 @@ const INTIAL_STATE = {
   ingredients: [],
   recipeDetails: [],
   recomendedRecipes: [],
+  cateogries: [],
   error: '',
 };
 
@@ -46,6 +47,12 @@ const requestReducers = (state = INTIAL_STATE, action) => {
     return {
       ...state,
       drinks: action.payload.data,
+      error: action.payload.error,
+    };
+  case REQUEST_CATEGORIES:
+    return {
+      ...state,
+      categories: action.payload.data,
       error: action.payload.error,
     };
   default:
