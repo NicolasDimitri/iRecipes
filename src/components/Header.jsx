@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AplicationContext from '../context/AplicationContext';
 import profileIcon from '../images/profileIcon.svg';
@@ -8,19 +8,17 @@ import styles from '../styles/Header.module.css';
 import SearchBar from './SearchBar';
 
 function Header({ title, renderExplore }) {
-  const { toggleSearchBar, renderButton } = useContext(AplicationContext);
-
-  useEffect(() => {
-    if (renderButton) {
-      toggleSearchBar();
-    }
-  }, []);
+  const { toggleSearchBar, resetSearchInput } = useContext(AplicationContext);
 
   return (
     <header className={ `box primary_color ${styles.box}` }>
       <div className="wrapper flex justify_content_between relative ">
         <nav>
-          <Link to="/profile" className={ styles.button }>
+          <Link
+            to="/profile"
+            className={ styles.button }
+            onClick={ resetSearchInput }
+          >
             <img
               data-testid="profile-top-btn"
               src={ profileIcon }
@@ -32,7 +30,12 @@ function Header({ title, renderExplore }) {
         <h1 data-testid="page-title" className={ styles.title }>{ title }</h1>
         {
           renderExplore && (
-            <button type="button" className={ styles.button } onClick={ toggleSearchBar }>
+            <button
+              data-testid="search-btn"
+              type="button"
+              className={ styles.button }
+              onClick={ toggleSearchBar }
+            >
               <img
                 data-testid="search-top-btn"
                 src={ searchIcon }

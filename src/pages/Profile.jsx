@@ -45,7 +45,6 @@ export default function Profile() {
             Logout
           </button>
         </section>
-
       </main>
       <Footer />
     </>

@@ -26,16 +26,17 @@ export default function SearchBar() {
   const dispatch = useDispatch();
 
   const verifyLetterFood = (letter) => {
-    if (letter.length > 1) {
+    if (letter.length !== 1) {
       const error = 'Your search must have only 1 (one) character';
-      global.alert(error);
+      return global.alert(error);
     }
     dispatch(requestFoodsByFirstLetter(searchInput));
   };
+
   const verifyLetterDrink = (letter) => {
-    if (letter.length > 1) {
+    if (letter.length !== 1) {
       const error = 'Your search must have only 1 (one) character';
-      global.alert(error);
+      return global.alert(error);
     }
     dispatch(requestDrinksByFirstLetter(searchInput));
   };
@@ -54,6 +55,7 @@ export default function SearchBar() {
         break;
       default:
         dispatch(requestFoodsToAPI());
+        break;
       }
     } if (path.includes('drinks')) {
       switch (selectRadio) {
