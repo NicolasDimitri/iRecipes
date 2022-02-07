@@ -1,19 +1,15 @@
 .categories {
+  align-items: center;
   display: flex;
-  
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
 }
 
 .categories button {
-  padding: 0;
-  margin: 2px;
-
-  flex: 1 0 25%;
-  
-  width: max-content;
-  height: 50px;
-
   border-radius: 0;
+  flex: 1 0 25%;
+  height: 50px;
+  margin: 2px;
+  padding: 0;
+  width: max-content;
 }
