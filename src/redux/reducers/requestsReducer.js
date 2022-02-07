@@ -13,6 +13,8 @@ const INTIAL_STATE = {
   recipeDetails: [],
   recomendedRecipes: [],
   cateogries: [],
+  wasFoodsFetched: false,
+  wasDrinksFetched: false,
   error: '',
 };
 
@@ -35,6 +37,7 @@ const requestReducers = (state = INTIAL_STATE, action) => {
       ...state,
       foods: action.payload.data,
       error: action.payload.error,
+      wasFoodsFetched: true,
     };
   case REQUEST_INGREDIENTS:
     return {
@@ -48,6 +51,7 @@ const requestReducers = (state = INTIAL_STATE, action) => {
       ...state,
       drinks: action.payload.data,
       error: action.payload.error,
+      wasDrinksFetched: true,
     };
   case REQUEST_CATEGORIES:
     return {

@@ -62,39 +62,56 @@ export const removeLocalStorageKeys = (arrayOfKeys) => {
  * @returns { Array.<object> } `Array` of objects;
  */
 export const formatDataFromAPI = (data, isMeal) => {
-  if (isMeal) {
+  if (data) {
+    if (isMeal) {
+      return data.map((item) => {
+        const ingredients = formatIngredientsAPI(item);
+        return {
+          id: item.idMeal,
+          title: item.strMeal,
+          category: item.strCategory,
+          location: item.strArea,
+          intructions: item.strInstructions,
+          ingredients,
+          image: item.strMealThumb,
+          tags: item.strTags,
+          type: 'foods',
+          movie: item.strYoutube ? item.strYoutube.split('=')[1] : '',
+        };
+      });
+    }
+
     return data.map((item) => {
       const ingredients = formatIngredientsAPI(item);
       return {
-        id: item.idMeal,
-        title: item.strMeal,
+        id: item.idDrink,
+        title: item.strDrink,
         category: item.strCategory,
-        location: item.strArea,
         intructions: item.strInstructions,
         ingredients,
-        image: item.strMealThumb,
+        image: item.strDrinkThumb,
         tags: item.strTags,
-        type: 'foods',
-        movie: item.strYoutube ? item.strYoutube.split('=')[1] : '',
+        movie: item.strVideo,
+        isAlcolic: item.strAlcoholic,
+        glass: item.strGlass,
+        type: 'drinks',
+        iba: item.strIBA,
       };
     });
   }
+};
 
-  return data.map((item) => {
-    const ingredients = formatIngredientsAPI(item);
-    return {
-      id: item.idDrink,
-      title: item.strDrink,
-      category: item.strCategory,
-      intructions: item.strInstructions,
-      ingredients,
-      image: item.strDrinkThumb,
-      tags: item.strTags,
-      movie: item.strVideo,
-      isAlcolic: item.strAlcoholic,
-      glass: item.strGlass,
-      type: 'drinks',
-      iba: item.strIBA,
-    };
-  });
+export const alertUserWhenNoResults = (data, wasFetched) => {
+  if (!data && wasFetched) {
+    global.alert(
+      'Sorry, we haven\'t found any recipes for these filters.',
+    );
+  }
+};
+
+export const redirectUserWhenOnlyOneResult = (data, isMeal = true, history, category) => {
+  if (data && data.length === 1 && category === '') {
+    const { id } = data[0];
+    return isMeal ? history.push(`/foods/${id}`) : history.push(`/drinks/${id}`);
+  }
 };

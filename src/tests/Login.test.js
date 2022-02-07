@@ -43,12 +43,10 @@ describe('Login Page', () => {
 
   it('Test if after login redirects to foods', async () => {
     const { history } = renderWithRouter(<Login />);
-    // console.log(history.location.pathname);
     const btnLogin = screen.getByTestId('login-submit-btn');
     userEvent.type(screen.getByTestId('email-input'), CORRECT_EMAIL_TEST);
     userEvent.type(screen.getByTestId('password-input'), CORRECT_PASSWORD_TEST);
     userEvent.click(btnLogin);
-    // console.log(history.location.pathname);
     expect(history.location.pathname).toEqual('/foods');
   });
 });

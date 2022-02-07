@@ -47,7 +47,6 @@ export default function FavoritesRecipes() {
         </button>
       </div>
       <div className={ style['cards-list'] }>
-        {console.log('teste')}
         {
 
           favorites && favorites.map((fav, i) => {
