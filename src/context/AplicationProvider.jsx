@@ -20,7 +20,6 @@ function AplicationProvider({ children }) {
   };
 
   const reloader = () => {
-    console.log('eu');
     setReload((previous) => !previous);
   };
 

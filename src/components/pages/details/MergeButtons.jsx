@@ -3,18 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../../helpers/localstorage';
 import FinishButton from './FinishButton';
 import StartButton from './StartButton';
+import { createInProgressRecipesKeys } from '../../../helpers';
 
 export default function MergeButtons({ styles, path, data, history }) {
   const [reload, setReload] = useState(false);
   const doneRecipes = getLocalStorage('doneRecipes');
   const inprogress = getLocalStorage('inProgressRecipes');
   const PROPERTY = path.includes('foods') ? 'meals' : 'cocktails';
-  const MODEL = {
-    cocktails: {},
-    meals: {},
-  };
-
-  MODEL[PROPERTY][data.id] = [];
 
   useEffect(() => {
     if (!doneRecipes) {
@@ -22,9 +17,10 @@ export default function MergeButtons({ styles, path, data, history }) {
       setReload((prev) => !prev);
     }
     if (!inprogress) {
+      const MODEL = createInProgressRecipesKeys(PROPERTY, data.id);
       setLocalStorage('inProgressRecipes', MODEL);
     }
-  });
+  }, [doneRecipes, inprogress, PROPERTY, data.id]);
 
   if (!path.includes('in-progress')
     && reload && !doneRecipes.some(({ id }) => id === data.id)) {

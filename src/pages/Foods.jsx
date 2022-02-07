@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import ExibitionComponent from '../components/ExibitionComponent';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -9,6 +10,7 @@ import {
   requestByCategory, requestCategories, requestFoodsToAPI,
 } from '../redux/actions';
 import styles from '../styles/Home.module.css';
+import { alertUserWhenNoResults, redirectUserWhenOnlyOneResult } from '../helpers';
 
 export default function Foods() {
   const { selectedIngredient } = useContext(AplicationContext);
@@ -18,23 +20,38 @@ export default function Foods() {
 
   const [category, setCategory] = useState('');
 
+  const categories = useSelector((state) => state.requestReducers.categories);
+  const wasFoodsFetched = useSelector((state) => state.requestReducers.wasFoodsFetched);
+  const data = useSelector((state) => state.requestReducers.foods);
+  const history = useHistory();
+
   useEffect(() => {
     if (!selectedIngredient) {
       dispatch(requestFoodsToAPI());
-      dispatch(requestCategories());
     }
-    if (category !== '') dispatch(requestByCategory(true, category));
   }, [category, selectedIngredient, dispatch]);
 
-  const categories = useSelector((state) => state.requestReducers.categories);
-  const data = useSelector((state) => state.requestReducers.foods);
+  useEffect(() => {
+    if (category !== '') {
+      dispatch(requestByCategory(true, category));
+    }
+  }, [category, dispatch]);
+
+  useEffect(() => {
+    dispatch(requestCategories());
+  }, [dispatch]);
+
+  useEffect(() => redirectUserWhenOnlyOneResult(data, true, history, category),
+    [data, history, category]);
 
   function changeCategory(value) {
     setCategory((prev) => (
       value !== prev ? value : ''));
   }
 
-  if (!data || !categories) return (<main><Loading /></main>);
+  alertUserWhenNoResults(data, wasFoodsFetched);
+
+  if (!data) return (<main><Loading /></main>);
 
   return (
     <>
