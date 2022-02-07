@@ -9,11 +9,11 @@
     "@sheerun/mutationobserver-shim": "^0.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "clipboard-copy": "^3.1.0",
     "eslint-plugin-sonarjs": "^0.11.0",
+    "fetch-mock-jest": "^1.5.1",
     "history": "^4.7.2",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
@@ -21,8 +21,13 @@
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.13.1",
     "react-logger": "^1.1.0",
+    "react-notifications": "^1.7.3",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.0",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
     "websocket-extensions": ">=0.1.4"
   },
   "scripts": {
@@ -34,7 +39,7 @@
     "test-coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx",
-    "lint:styles": "npx stylelint '**/*.css'"
+    "lint:styles": "npx stylelint **/*.css"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,6 +57,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.11.3",
+    "@testing-library/user-event": "^13.5.0",
     "clipboardy": "^2.1.0",
     "cypress": "^9.3.1",
     "cypress-multi-reporters": "^1.4.0",

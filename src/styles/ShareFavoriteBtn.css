@@ -1,0 +1,12 @@
+.div-share-favorite-btn {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  max-width: 20px;
+}
+
+.div-share-favorite-btn div img {
+  margin-left: 20px;
+  max-width: 40px;
+}

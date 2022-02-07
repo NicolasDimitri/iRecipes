@@ -1,0 +1,20 @@
+.box {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.button {
+  background: none;
+  padding: 0;
+  width: 40px;
+}
+
+.title {
+  bottom: 11px;
+  font-family: Amaranth , serif;
+  font-size: 30pt;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+}
