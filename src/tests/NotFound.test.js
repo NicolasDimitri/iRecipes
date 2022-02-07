@@ -1,9 +1,7 @@
-import React from 'react';
 import { cleanup, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
-import renderWithRouteReduxAndContext from './renderWithRouteReduxAndContext';
+import React from 'react';
 import NotFoundPage from '../pages/NotFoundPage';
+import renderWithRouteReduxAndContext from './renderWithRouteReduxAndContext';
 
 describe('Testando a pagina NotFound', () => {
   afterEach(() => cleanup());

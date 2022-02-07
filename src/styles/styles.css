@@ -11,7 +11,7 @@
 
 :root {
 
-  --main-background-color: rgb(06, 06, 06);
+  --main-background-color: rgb(08, 08, 08);
 
   --main-primary-color: black;
 
@@ -46,6 +46,8 @@
   .wrapper { margin: 0 auto;
     width: 100%; }
 
+  main { margin: 90px auto; }
+
   iframe {
     height: 230px;
     width: 100%;
@@ -55,6 +57,9 @@
 @media screen and ( min-width : 801px ) {
 
   .wrapper { margin: 0 auto;
+    width: 800px; }
+
+  main { margin: 90px auto;
     width: 800px; }
 
   iframe {
@@ -80,7 +85,12 @@ body {
 
 .relative { position: relative; }
 
-.box { border-bottom: solid 0.1em var(--main-border-color);
+.absolute { position: absolute; }
+
+.fixed { position: fixed; }
+
+.box {
+  border-bottom: solid 0.1em var(--main-border-color);
   padding: 17px;
   text-align: center; }
 
@@ -97,6 +107,13 @@ body {
 
 .flex_direction_row { flex-direction: row; }
 
+.flex_now_wrap { flex-wrap: nowrap;}
+
+.flex_wrap { flex-wrap: wrap; }
+
+.align_items_center { align-items: center; }
+
+.vertical_align_middle { vertical-align: middle; }
 
 /* Forms */
 input {

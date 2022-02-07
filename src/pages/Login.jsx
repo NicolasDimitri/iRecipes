@@ -40,7 +40,6 @@ function Login() {
           name="email"
           value={ email }
           placeholder="E-mail"
-          // onFocus={ (e) => { e.target.placeholder = 'E-mail'; } }
           onChange={ ({ target }) => setEmail(target.value) }
         />
         <input
@@ -49,7 +48,6 @@ function Login() {
           name="password"
           value={ password }
           placeholder="Senha"
-          // onFocus={ (e) => { e.target.placeholder = 'Senha'; } }
           onChange={ ({ target }) => setPassword(target.value) }
         />
         <button

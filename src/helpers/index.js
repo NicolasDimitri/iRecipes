@@ -1,3 +1,17 @@
+import { NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
+export const createNotification = (type) => {
+  const TIME_DEFAULT = 3000;
+  switch (type) {
+  case 'copy':
+    NotificationManager.success('Link copied!', '', TIME_DEFAULT);
+    break;
+  default:
+    NotificationManager.info('Error: No info message');
+  }
+};
+
 /**
  * Format the ingredients of recipes;
  * @function `formatIngredientsAPI`
@@ -60,6 +74,7 @@ export const formatDataFromAPI = (data, isMeal) => {
         ingredients,
         image: item.strMealThumb,
         tags: item.strTags,
+        type: 'foods',
         movie: item.strYoutube ? item.strYoutube.split('=')[1] : '',
       };
     });
@@ -78,6 +93,7 @@ export const formatDataFromAPI = (data, isMeal) => {
       movie: item.strVideo,
       isAlcolic: item.strAlcoholic,
       glass: item.strGlass,
+      type: 'drinks',
       iba: item.strIBA,
     };
   });

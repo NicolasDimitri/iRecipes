@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { requestRecomendedRecipesToAPI } from '../redux/actions';
-import style from '../styles/RecomendedRecipes.module.css';
 
-const max = 6;
+const MAX = 6;
 
-export default function RecomendedRecipes() {
+export default function RecomendedRecipes({ styles }) {
   const { path } = useRouteMatch();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -18,34 +17,44 @@ export default function RecomendedRecipes() {
   }, [dispatch, path]);
 
   const data = useSelector((state) => state.requestReducers.recomendedRecipes);
-  console.log(data);
-  return (
-    <section>
-      <h1>RECOMENDED Reciepes</h1>
-      {data && (
-        <section className={ style.recomendedRecipesContainer }>
-          {data.map((recipe, index) => {
-            if (index + 1 <= max) {
-              return (
-                <div
-                  data-testid={ `${index}-recomendation-card` }
-                  key={ recipe.id }
-                  className={ style.recomendedRecipes }
+
+  return data ? data.map((recipe, i) => {
+    if (i + 1 <= MAX) {
+      return (
+        <Link
+          key={ recipe.id }
+          id={ `link_recommended_${i}` }
+          to={ `/${recipe.type}/${recipe.id}` }
+        >
+          <section
+            id={ `card_recommended_${i}` }
+            className={ `flex flex_direction_column ${styles.recommended_card}` }
+            data-testid={ `${i}-recomendation-card` }
+          >
+            <img
+              id={ `image_recommended_${i}` }
+              src={ recipe.image }
+              alt={ recipe.title }
+            />
+            <div className={ styles.recommended_card_title }>
+              <h1
+                id={ `title_recommended_${i}` }
+                data-testid={ `${i}-recomendation-title` }
+              >
+                {recipe.title}
+              </h1>
+              { recipe.isAlcolic && (
+                <p
+                  id={ `category_recommended_${i}` }
+                  data-testid="recipe-category"
                 >
-                  <h1 data-testid={ `${index}-recomendation-title` }>
-                    {recipe.title}
-                  </h1>
-                  { recipe.isAlcolic && (
-                    <p data-testid="recipe-category">{ recipe.isAlcolic }</p>
-                  ) }
-                  <img src={ recipe.image } alt={ recipe.title } />
-                </div>
-              );
-            }
-            return false;
-          })}
-        </section>
-      )}
-    </section>
-  );
+                  { recipe.isAlcolic }
+                </p>
+              ) }
+            </div>
+          </section>
+        </Link>
+      );
+    } return false;
+  }) : '';
 }

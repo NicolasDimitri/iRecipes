@@ -1,0 +1,15 @@
+.categories {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.categories button {
+  border-radius: 0;
+  flex: 1 0 25%;
+  height: 50px;
+  margin: 2px;
+  padding: 0;
+  width: max-content;
+}

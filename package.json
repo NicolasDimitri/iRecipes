@@ -16,12 +16,12 @@
     "fetch-mock-jest": "^1.5.1",
     "history": "^4.7.2",
     "lodash": "^4.17.15",
-    "node-fetch": "^3.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.13.1",
     "react-logger": "^1.1.0",
+    "react-notifications": "^1.7.3",
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.0",
@@ -39,7 +39,7 @@
     "test-coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx",
-    "lint:styles": "npx stylelint '**/*.css'"
+    "lint:styles": "npx stylelint **/*.css"
   },
   "eslintConfig": {
     "extends": "react-app"

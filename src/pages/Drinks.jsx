@@ -1,27 +1,74 @@
-import React, { useEffect, useContext } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useContext, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ExibitionComponent from '../components/ExibitionComponent';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 import AplicationContext from '../context/AplicationContext';
-import { requestDrinksFromAPI } from '../redux/actions';
+import {
+  requestByCategory, requestCategories, requestDrinksFromAPI,
+} from '../redux/actions';
+import styles from '../styles/Home.module.css';
 
 export default function Drinks() {
-  const MAXIMUM_RECIPES_CARD = 12;
-  const data = useSelector((state) => state.requestReducers.drinks);
   const { selectedIngredient } = useContext(AplicationContext);
   const dispatch = useDispatch();
+  const MAXIMUM_RECIPES_CARD = 12;
+  const MAX_CATEGORIES = 5;
+
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     if (!selectedIngredient) {
       dispatch(requestDrinksFromAPI());
+      dispatch(requestCategories(false));
     }
-  }, [selectedIngredient, dispatch]);
+    if (category !== '') dispatch(requestByCategory(false, category));
+  }, [category, selectedIngredient, dispatch]);
+
+  const categories = useSelector((state) => state.requestReducers.categories);
+  const data = useSelector((state) => state.requestReducers.drinks);
+
+  function changeCategory(value) {
+    setCategory((prev) => (
+      prev === value ? '' : value));
+  }
+
+  if (!data || !categories) return (<main><Loading /></main>);
 
   return (
     <>
       <Header title="Drinks" />
-      <main style={ { margin: '90px 0' } } className="flex flex_direction_column">
+      <main>
+        <h1 style={ { display: 'none' } }>Drinks page</h1>
+        <div className={ styles.categories }>
+          <button
+            type="button"
+            onClick={ () => changeCategory('') }
+            data-testid="All-category-filter"
+          >
+            All
+          </button>
+          {
+            categories && categories.map(({ strCategory }, i) => {
+              if (i < MAX_CATEGORIES) {
+                return (
+                  <button
+                    key={ i }
+                    type="button"
+                    onClick={ () => changeCategory(strCategory) }
+                    onDoubleClick={ () => {} }
+                    data-testid={ `${strCategory}-category-filter` }
+                  >
+                    {strCategory}
+
+                  </button>
+                );
+              }
+              return false;
+            })
+          }
+        </div>
         {
           data.length > 0 && (
             data.map((item, index) => {
@@ -29,7 +76,7 @@ export default function Drinks() {
                 return (
                   <ExibitionComponent
                     key={ item.title }
-                    exibitionData={ item }
+                    data={ item }
                     index={ index }
                   />
                 );

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import AplicationContext from './AplicationContext';
 
 function AplicationProvider({ children }) {
@@ -8,6 +8,7 @@ function AplicationProvider({ children }) {
   const [darkMode, toggleDarkMode] = useState(true);
   const [searchInput, setSearchInput] = useState('');
   const [selectRadio, setSelectRadio] = useState('');
+  const [reload, setReload] = useState(false);
 
   /**
    * Altera o tema da aplicaçao para dark ou light mode
@@ -18,8 +19,13 @@ function AplicationProvider({ children }) {
     toggleDarkMode(!darkMode);
   };
 
+  const reloader = () => {
+    console.log('eu');
+    setReload((previous) => !previous);
+  };
+
   /**
-   * Altera o status do renderButton
+   * Altera o status do renderButon
    *@function toggleSearchBar;
    */
   const toggleSearchBar = () => {
@@ -44,6 +50,8 @@ function AplicationProvider({ children }) {
     selectRadio,
     setSelectRadio,
     resetSearchInput,
+    reload,
+    reloader,
   };
 
   return (
