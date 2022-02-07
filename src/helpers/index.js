@@ -115,3 +115,12 @@ export const redirectUserWhenOnlyOneResult = (data, isMeal = true, history, cate
     return isMeal ? history.push(`/foods/${id}`) : history.push(`/drinks/${id}`);
   }
 };
+
+export const createInProgressRecipesKeys = (property, id) => {
+  const MODEL = {
+    cocktails: {},
+    meals: {},
+  };
+  MODEL[property][id] = [];
+  return MODEL;
+};
