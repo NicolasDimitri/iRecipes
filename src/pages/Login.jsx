@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
+import ChangeTheme from '../components/change_theme';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -31,35 +32,38 @@ function Login() {
     validateForm();
   }, [email, password]);
   return (
-    <div className="center_middle flex flex_direction_column box login">
-      <h1 className={ styles.title }>iRecipes</h1>
-      <form className="form">
-        <input
-          type="email"
-          data-testid="email-input"
-          name="email"
-          value={ email }
-          placeholder="E-mail"
-          onChange={ ({ target }) => setEmail(target.value) }
-        />
-        <input
-          type="password"
-          data-testid="password-input"
-          name="password"
-          value={ password }
-          placeholder="Senha"
-          onChange={ ({ target }) => setPassword(target.value) }
-        />
-        <button
-          type="submit"
-          data-testid="login-submit-btn"
-          onClick={ handleSubmit }
-          disabled={ disabled }
-        >
-          Enter
-        </button>
-      </form>
-    </div>
+    <>
+      <div className="center_middle flex flex_direction_column box login">
+        <h1 className={ styles.title }>iRecipes</h1>
+        <form className="form">
+          <input
+            type="email"
+            data-testid="email-input"
+            name="email"
+            value={ email }
+            placeholder="E-mail"
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+          <input
+            type="password"
+            data-testid="password-input"
+            name="password"
+            value={ password }
+            placeholder="Senha"
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+          <button
+            type="submit"
+            data-testid="login-submit-btn"
+            onClick={ handleSubmit }
+            disabled={ disabled }
+          >
+            Enter
+          </button>
+        </form>
+      </div>
+      <ChangeTheme />
+    </>
   );
 }
 
