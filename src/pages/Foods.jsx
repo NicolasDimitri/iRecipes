@@ -6,11 +6,12 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import AplicationContext from '../context/AplicationContext';
+import { alertUserWhenNoResults, redirectUserWhenOnlyOneResult } from '../helpers';
 import {
   requestByCategory, requestCategories, requestFoodsToAPI,
 } from '../redux/actions';
 import styles from '../styles/Home.module.css';
-import { alertUserWhenNoResults, redirectUserWhenOnlyOneResult } from '../helpers';
+import ChangeTheme from '../components/change_theme';
 
 export default function Foods() {
   const { selectedIngredient } = useContext(AplicationContext);
@@ -103,6 +104,7 @@ export default function Foods() {
         }
       </main>
       <Footer />
+      <ChangeTheme />
     </>
   );
 }

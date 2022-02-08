@@ -1,27 +1,26 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import light from '../images/light_mode.svg';
 import AplicationContext from './AplicationContext';
 
 function AplicationProvider({ children }) {
   const [renderButton, setRenderButton] = useState(false);
   const [selectedIngredient, setSelectedIngredient] = useState('');
-  const [darkMode, toggleDarkMode] = useState(true);
   const [searchInput, setSearchInput] = useState('');
   const [selectRadio, setSelectRadio] = useState('');
   const [reload, setReload] = useState(false);
-
-  /**
-   * Altera o tema da aplicaçao para dark ou light mode
-   * @function changeTheme
-   * @param void - Don't recive param
-   */
-  const changeTheme = () => {
-    toggleDarkMode(!darkMode);
-  };
+  const [theme, setTheme] = useState('dark_mode');
+  const [iconTheme, setIconTheme] = useState(light);
 
   const reloader = () => {
     setReload((previous) => !previous);
   };
+
+  function changeTheme() {
+    setTheme(theme === 'dark_mode' ? 'light_mode' : 'dark_mode');
+  }
+
+  useEffect(() => { document.body.classList = theme; }, [theme]);
 
   /**
    * Altera o status do renderButon
@@ -42,8 +41,6 @@ function AplicationProvider({ children }) {
     toggleSearchBar,
     setSelectedIngredient,
     selectedIngredient,
-    changeTheme,
-    darkMode,
     searchInput,
     setSearchInput,
     selectRadio,
@@ -51,6 +48,10 @@ function AplicationProvider({ children }) {
     resetSearchInput,
     reload,
     reloader,
+    theme,
+    changeTheme,
+    iconTheme,
+    setIconTheme,
   };
 
   return (

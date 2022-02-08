@@ -9,23 +9,6 @@
   vertical-align: baseline;
 }
 
-:root {
-
-  --main-background-color: rgb(08, 08, 08);
-
-  --main-primary-color: black;
-
-  --main-secondary-color: rgb(58, 58, 58);
-
-  --main-button-color: rgb(0, 187, 255);
-
-  --main-button-disabled-color: rgb(0, 161, 248);
-
-  --main-border-color: rgb(30, 30, 30);
-
-  --main-text-color: white;
-}
-
 .primary_color { background-color: var(--main-primary-color); }
 
 .secondary_color { background-color: var(--main-secondary-color); }
@@ -74,6 +57,9 @@ body {
   border-color: var(--main-border-color);
   color: var(--main-text-color);
   font-family: Roboto , sans-serif;
+
+  overflow-x: hidden;
+  transition: background-color .2s ease-in
 }
 
 .center_middle {
