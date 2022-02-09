@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import styles from '../styles/ExploreNationalities.module.css';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { requestFoodsToAPI } from '../redux/actions';
@@ -23,11 +24,12 @@ export default function ExploreNationalities() {
     <>
       <Header title="Explore Nationalities" />
       <div
-        className="wrapper"
+        className={ styles.content }
         style={ { marginTop: '90px' } }
       >
         <select
           data-testid="explore-by-nationality-dropdown"
+          style={ styles.selectInput }
           name="explore-by-nationality-dropdown"
           id="explore-by-nationality-dropdown"
           onChange={ ({ target: { value } }) => {
@@ -54,7 +56,9 @@ export default function ExploreNationalities() {
         </select>
         {mealsByArea ? mealsByArea
           .slice(0, MAX_LENGTH).map(({ idMeal, strMeal, strMealThumb }, i) => (
-            <div
+            <Link
+              className={ styles.card }
+              to={ `/foods/${idMeal}` }
               data-testid={ `${i}-recipe-card` }
               key={ idMeal }
             >
@@ -69,10 +73,11 @@ export default function ExploreNationalities() {
                 src={ strMealThumb }
                 alt={ strMeal }
               />
-            </div>
+            </Link>
           ))
           : data.slice(0, MAX_LENGTH).map(({ id, image, title }, i) => (
             <Link
+              className={ styles.card }
               to={ `/foods/${id}` }
               data-testid={ `${i}-recipe-card` }
               key={ id }
