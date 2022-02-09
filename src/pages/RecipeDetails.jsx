@@ -12,6 +12,7 @@ import {
 } from '../helpers/localstorage';
 import { requestDrinksByIdFromAPI, requestFoodsByIdFromAPI } from '../redux/actions';
 import styles from '../styles/Details.module.css';
+import ChangeTheme from '../components/change_theme';
 
 export default function RecipeDetails({ match: { params: { id } }, history }) {
   const { path } = useRouteMatch();
@@ -52,7 +53,7 @@ export default function RecipeDetails({ match: { params: { id } }, history }) {
         />
         <div
           id="head"
-          className={ `flex flex justify_content_between ${styles.head}` }
+          className={ `flex justify_content_between ${styles.head}` }
         >
           <h1 id="title" data-testid="recipe-title">{ item.title }</h1>
           <Feed id="feed" styles={ styles } item={ item } />
@@ -151,7 +152,7 @@ export default function RecipeDetails({ match: { params: { id } }, history }) {
         data={ item }
         history={ history }
       />
-
+      <ChangeTheme />
     </main>
   );
 }

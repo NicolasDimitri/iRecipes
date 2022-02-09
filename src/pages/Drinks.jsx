@@ -1,16 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import ChangeTheme from '../components/change_theme';
 import ExibitionComponent from '../components/ExibitionComponent';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import AplicationContext from '../context/AplicationContext';
+import { alertUserWhenNoResults, redirectUserWhenOnlyOneResult } from '../helpers';
 import {
   requestByCategory, requestCategories, requestDrinksFromAPI,
 } from '../redux/actions';
 import styles from '../styles/Home.module.css';
-import { alertUserWhenNoResults, redirectUserWhenOnlyOneResult } from '../helpers';
 
 export default function Drinks() {
   const { selectedIngredient } = useContext(AplicationContext);
@@ -105,6 +106,7 @@ export default function Drinks() {
         }
       </main>
       <Footer />
+      <ChangeTheme />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ChangeTheme from '../components/change_theme';
 import Feed from '../components/Feed';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
@@ -47,7 +48,7 @@ export default function Cooked() {
           </button>
         </div>
         <div
-          className="flex justify_content_around"
+          className="flex align_items_center justify_content_around flex_direction_column"
         >
           {
             filtered && filtered.map(({
@@ -125,6 +126,7 @@ export default function Cooked() {
             })
           }
         </div>
+        <ChangeTheme />
 
       </main>
     </>
