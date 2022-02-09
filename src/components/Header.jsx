@@ -8,7 +8,12 @@ import styles from '../styles/Header.module.css';
 import SearchBar from './SearchBar';
 
 function Header({ title, renderExplore }) {
-  const { toggleSearchBar, resetSearchInput } = useContext(AplicationContext);
+  const { toggleSearchBar, resetSearchInput, theme } = useContext(AplicationContext);
+  function applyStyle() {
+    if (theme === 'light_mode') {
+      return { filter: 'invert(100%)' };
+    }
+  }
 
   return (
     <header className={ `box primary_color ${styles.box}` }>
@@ -20,6 +25,7 @@ function Header({ title, renderExplore }) {
             onClick={ resetSearchInput }
           >
             <img
+              style={ applyStyle() }
               data-testid="profile-top-btn"
               src={ profileIcon }
               width="90%"
@@ -37,6 +43,7 @@ function Header({ title, renderExplore }) {
               onClick={ toggleSearchBar }
             >
               <img
+                style={ applyStyle() }
                 data-testid="search-top-btn"
                 src={ searchIcon }
                 width="90%"
