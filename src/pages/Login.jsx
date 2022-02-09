@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import styles from '../styles/Login.module.css';
 import ChangeTheme from '../components/change_theme';
+import Auth from '../helpers/secutiry';
+import styles from '../styles/Login.module.css';
 
 function Login() {
+  const history = useHistory();
+
+  if (!Auth()) history.push('/foods');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
-
-  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
