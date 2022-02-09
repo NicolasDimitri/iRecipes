@@ -26,6 +26,9 @@ export default function Explore({ history }) {
       >
         <button
           type="button"
+          style={ {
+            marginBottom: '30px',
+          } }
           data-testid="explore-foods"
           onClick={ () => redirect('/explore/foods') }
         >

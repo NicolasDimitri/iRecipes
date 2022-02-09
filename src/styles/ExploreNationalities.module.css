@@ -1,0 +1,33 @@
+.content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.card {
+  align-items: center;
+  background-color: #1e1e1e;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  padding: 20px;
+  transition: 0.3s ease-in-out;
+  width: 160px;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.card h1 {
+  font-family: Amaranth , sans-serif;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.card img {
+  border-radius: 16px;
+}

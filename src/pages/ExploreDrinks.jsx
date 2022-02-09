@@ -27,6 +27,9 @@ export default function ExploreDrinks({ history }) {
         <button
           type="button"
           data-testid="explore-by-ingredient"
+          style={ {
+            marginBottom: '30px',
+          } }
           onClick={ () => redirect('/explore/drinks/ingredients') }
         >
           By Ingredient

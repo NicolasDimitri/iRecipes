@@ -15,7 +15,11 @@ export default function Profile() {
   return (
     <>
       <Header title="Profile" renderExplore={ false } />
-      <main style={ { marginTop: '90px' } }>
+      <main
+        style={ {
+          marginTop: '90px',
+        } }
+      >
         <p data-testid="profile-email">
           {getUserEmailFromLocalStorage()}
         </p>
@@ -24,6 +28,10 @@ export default function Profile() {
           <button
             type="button"
             data-testid="profile-done-btn"
+            style={ {
+              marginTop: '25px',
+              marginBottom: '25px',
+            } }
             onClick={ () => history.push('/done-recipes') }
           >
             Done Recipes
@@ -32,6 +40,9 @@ export default function Profile() {
           <button
             type="button"
             data-testid="profile-favorite-btn"
+            style={ {
+              marginBottom: '25px',
+            } }
             onClick={ () => history.push('/favorite-recipes') }
           >
             Favorite Recipes
