@@ -26,6 +26,9 @@ export default function ExploreFoods({ history }) {
       >
         <button
           type="button"
+          style={ {
+            marginBottom: '30px',
+          } }
           data-testid="explore-by-ingredient"
           onClick={ () => redirect('/explore/foods/ingredients') }
         >
@@ -33,6 +36,9 @@ export default function ExploreFoods({ history }) {
         </button>
         <button
           type="button"
+          style={ {
+            marginBottom: '30px',
+          } }
           data-testid="explore-by-nationality"
           onClick={ () => redirect('/explore/foods/nationalities') }
         >
