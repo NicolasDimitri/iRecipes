@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
+import AplicationContext from '../../../context/AplicationContext';
+import { createInProgressRecipesKeys } from '../../../helpers';
 import { getLocalStorage, setLocalStorage } from '../../../helpers/localstorage';
 import FinishButton from './FinishButton';
 import StartButton from './StartButton';
-import { createInProgressRecipesKeys } from '../../../helpers';
 
 export default function MergeButtons({ styles, path, data, history }) {
-  const [reload, setReload] = useState(false);
+  const { reload, reloader } = useContext(AplicationContext);
   const doneRecipes = getLocalStorage('doneRecipes');
   const inprogress = getLocalStorage('inProgressRecipes');
   const PROPERTY = path.includes('foods') ? 'meals' : 'cocktails';
@@ -14,16 +15,18 @@ export default function MergeButtons({ styles, path, data, history }) {
   useEffect(() => {
     if (!doneRecipes) {
       setLocalStorage('doneRecipes', []);
-      setReload((prev) => !prev);
+      reloader();
     }
     if (!inprogress) {
       const MODEL = createInProgressRecipesKeys(PROPERTY, data.id);
       setLocalStorage('inProgressRecipes', MODEL);
     }
-  }, [doneRecipes, inprogress, PROPERTY, data.id]);
+  }, [doneRecipes, inprogress, PROPERTY, data.id, reload, reloader]);
+
+  console.log(doneRecipes && doneRecipes.some(({ id }) => console.log('done: ', id)));
 
   if (!path.includes('in-progress')
-    && reload && !doneRecipes.some(({ id }) => id === data.id)) {
+    && inprogress && !doneRecipes.some(({ id }) => id === data.id)) {
     return (
       <StartButton
         styles={ styles }
@@ -33,7 +36,8 @@ export default function MergeButtons({ styles, path, data, history }) {
       />
     );
   }
-  return reload && !doneRecipes.some(({ id }) => id === data.id) && (
+
+  return doneRecipes && !doneRecipes.some(({ id }) => id === data.id) && (
     <FinishButton
       styles={ styles }
       path={ path }
