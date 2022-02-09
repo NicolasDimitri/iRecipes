@@ -42,7 +42,6 @@
   transition: all .7s;
 }
 
-
 .tools_box:hover {
   width: 127px;
   transform: translateX(0px);
