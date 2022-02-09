@@ -13,20 +13,21 @@ import Login from '../pages/Login';
 import NotFoundPage from '../pages/NotFoundPage';
 import Profile from '../pages/Profile';
 import RecipeDetails from '../pages/RecipeDetails';
+import PrivateRoutes from './PrivateRoutes';
 
 export default function Routes() {
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
-      <Route exact path="/foods" component={ Foods } />
-      <Route exact path="/drinks" component={ Drinks } />
-      <Route exact path="/foods/:id" component={ RecipeDetails } />
-      <Route exact path="/drinks/:id" component={ RecipeDetails } />
-      <Route exact path="/foods/:id/in-progress" component={ RecipeDetails } />
-      <Route exact path="/drinks/:id/in-progress" component={ RecipeDetails } />
-      <Route exact path="/explore" component={ Explore } />
-      <Route exact path="/explore/foods" component={ ExploreFoods } />
-      <Route exact path="/explore/drinks" component={ ExploreDrinks } />
+      <PrivateRoutes exact path="/foods" component={ Foods } />
+      <PrivateRoutes exact path="/drinks" component={ Drinks } />
+      <PrivateRoutes exact path="/foods/:id" component={ RecipeDetails } />
+      <PrivateRoutes exact path="/drinks/:id" component={ RecipeDetails } />
+      <PrivateRoutes exact path="/foods/:id/in-progress" component={ RecipeDetails } />
+      <PrivateRoutes exact path="/drinks/:id/in-progress" component={ RecipeDetails } />
+      <PrivateRoutes exact path="/explore" component={ Explore } />
+      <PrivateRoutes exact path="/explore/foods" component={ ExploreFoods } />
+      <PrivateRoutes exact path="/explore/drinks" component={ ExploreDrinks } />
       <Route
         exact
         path="/explore/foods/ingredients"
@@ -37,14 +38,14 @@ export default function Routes() {
         path="/explore/drinks/ingredients"
         render={ () => <ExploreIngredients isDrink /> }
       />
-      <Route
+      <PrivateRoutes
         exact
         path="/explore/foods/nationalities"
         component={ ExploreNationalities }
       />
-      <Route exact path="/profile" component={ Profile } />
-      <Route exact path="/done-recipes" component={ Cooked } />
-      <Route exact path="/favorite-recipes" component={ FavoritesRecipes } />
+      <PrivateRoutes exact path="/profile" component={ Profile } />
+      <PrivateRoutes exact path="/done-recipes" component={ Cooked } />
+      <PrivateRoutes exact path="/favorite-recipes" component={ FavoritesRecipes } />
       <Route path="*" component={ NotFoundPage } />
     </Switch>
   );
