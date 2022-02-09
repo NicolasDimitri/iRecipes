@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import ChangeTheme from '../components/change_theme';
 import ExibitionComponent from '../components/ExibitionComponent';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -11,7 +12,6 @@ import {
   requestByCategory, requestCategories, requestFoodsToAPI,
 } from '../redux/actions';
 import styles from '../styles/Home.module.css';
-import ChangeTheme from '../components/change_theme';
 
 export default function Foods() {
   const { selectedIngredient } = useContext(AplicationContext);
