@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
-import { NotificationContainer } from 'react-notifications';
 import AplicationContext from '../context/AplicationContext';
-import { createNotification } from '../helpers/index';
 import isHearth from '../images/blackHeartIcon.svg';
 import shared from '../images/sharedIcon.svg';
 import share from '../images/shareIcon.svg';
@@ -11,7 +9,7 @@ import hearth from '../images/whiteHeartIcon.svg';
 export default function Feed({ styles, item, tshare, tfav }) {
   const [shareIcon, setShareIcon] = useState(share);
   const [hearthIcon, setHearthIcon] = useState(hearth);
-  const { reloader } = useContext(AplicationContext);
+  const { reloader, theme } = useContext(AplicationContext);
 
   const type = item.type.match(/food|drink/)[0];
 
@@ -20,6 +18,18 @@ export default function Feed({ styles, item, tshare, tfav }) {
     navigator.clipboard.writeText(link);
     setShareIcon(shared);
     createNotification('copy');
+  }
+
+  function applyStyleShare() {
+    if (theme === 'light_mode' && shareIcon !== shared) {
+      return { filter: 'invert(100%)' };
+    }
+  }
+
+  function applyStyleHearth() {
+    if (theme === 'light_mode' && hearthIcon !== isHearth) {
+      return { filter: 'invert(100%)' };
+    }
   }
 
   const manageFavorites = () => {
@@ -55,7 +65,6 @@ export default function Feed({ styles, item, tshare, tfav }) {
       localStorage.setItem('favoriteRecipes', JSON.stringify([object]));
       setHearthIcon(isHearth);
     }
-
     reloader();
   };
 
@@ -75,10 +84,15 @@ export default function Feed({ styles, item, tshare, tfav }) {
       <button
         type="button"
         style={ { transform: 'rotateZ(-35deg)', marginBottom: '7px' } }
-        className={ `${styles.button} ${styles.copyButton}` }
+        className={ `${styles.button} ${styles.copyButton} ` }
         onClick={ copyToClipboard }
       >
-        <img data-testid={ tshare } src={ shareIcon } alt="share icon" />
+        <img
+          style={ applyStyleShare() }
+          data-testid={ tshare }
+          src={ shareIcon }
+          alt="share icon"
+        />
       </button>
       <button
         type="button"
@@ -86,9 +100,13 @@ export default function Feed({ styles, item, tshare, tfav }) {
         onClick={ manageFavorites }
 
       >
-        <img data-testid={ tfav } src={ hearthIcon } alt="black heart icon" />
+        <img
+          style={ applyStyleHearth() }
+          data-testid={ tfav }
+          src={ hearthIcon }
+          alt="black heart icon"
+        />
       </button>
-      <NotificationContainer />
     </div>
   );
 }
