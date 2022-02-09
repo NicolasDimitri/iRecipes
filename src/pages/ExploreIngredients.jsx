@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
+import styles from '../styles/ExploreIngredients.module.css';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import AplicationContext from '../context/AplicationContext';
@@ -49,7 +50,13 @@ export default function ExploreIngredients({ isDrink }) {
       <SearchBar />
       {
         ingredients.length > 0 && (
-          <section style={ { marginTop: '90px', marginBottom: '90px' } }>
+          <section
+            style={ {
+              marginTop: '90px',
+              marginBottom: '90px',
+            } }
+            className={ styles.content }
+          >
             { ingredients.map(({ strIngredient1, strIngredient }, index) => {
               if ((index + 1 <= MAXIMUM_INGREDIENT_CARD)) {
                 return (
@@ -60,7 +67,7 @@ export default function ExploreIngredients({ isDrink }) {
                       strIngredient1 || strIngredient,
                     ) }
                     aria-hidden="true"
-
+                    className={ styles.card }
                   >
                     <h1
                       data-testid={ `${index}-card-name` }
@@ -77,7 +84,6 @@ export default function ExploreIngredients({ isDrink }) {
                       ) }
                       alt={ strIngredient || strIngredient1 }
                     />
-
                   </section>
                 );
               }
