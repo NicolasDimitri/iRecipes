@@ -19,6 +19,7 @@ export default function Routes() {
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
+      <Route exact path="/iRecipes" component={ Login } />
       <PrivateRoutes exact path="/foods" component={ Foods } />
       <PrivateRoutes exact path="/drinks" component={ Drinks } />
       <PrivateRoutes exact path="/foods/:id" component={ RecipeDetails } />
