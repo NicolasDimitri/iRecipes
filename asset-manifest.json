@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/iRecipes/static/css/main.fb761b5a.css",
+    "main.js": "/iRecipes/static/js/main.7677def1.js",
+    "static/media/Amaranth-Regular.ttf": "/iRecipes/static/media/Amaranth-Regular.f001406c48689971189f.ttf",
+    "static/media/notification.svg?s3g3t9": "/iRecipes/static/media/notification.5d0158671dd860c714c4.svg",
+    "static/media/loading.svg": "/iRecipes/static/media/loading.490ff62835d878fdd789e5971844db31.svg",
+    "static/media/notification.eot": "/iRecipes/static/media/notification.3657084dc0419605a91c.eot",
+    "static/media/notification.woff?s3g3t9": "/iRecipes/static/media/notification.c392cd33d9d9de730f9d.woff",
+    "static/media/notification.ttf?s3g3t9": "/iRecipes/static/media/notification.c5d9251ea82e42f75381.ttf",
+    "static/media/light_mode.svg": "/iRecipes/static/media/light_mode.6038b760ac203a5427ebdcf26bf5536b.svg",
+    "index.html": "/iRecipes/index.html",
+    "static/media/profileIcon.svg": "/iRecipes/static/media/profileIcon.ff3c88cffee40dc61017f963edede3bd.svg",
+    "static/media/color_fill.svg": "/iRecipes/static/media/color_fill.214707911e851a01a5cc.svg",
+    "static/media/exploreIcon.svg": "/iRecipes/static/media/exploreIcon.320d537f658170119ae36a3e7e331a3c.svg",
+    "static/media/mealIcon.svg": "/iRecipes/static/media/mealIcon.ca97585779bd38ad9748a4924577133e.svg",
+    "static/media/searchIcon.svg": "/iRecipes/static/media/searchIcon.6c3e1478300173e5d44495b7135639dc.svg",
+    "static/media/drinkIcon.svg": "/iRecipes/static/media/drinkIcon.c287880ea9dcad7c9fc10b95d8388b62.svg",
+    "static/media/night_mode.svg": "/iRecipes/static/media/night_mode.e80b6984c5b16e8a7e3fa5d021a0206c.svg",
+    "static/media/blackHeartIcon.svg": "/iRecipes/static/media/blackHeartIcon.36c0386352a3799669c0c8404ad233c0.svg",
+    "static/media/whiteHeartIcon.svg": "/iRecipes/static/media/whiteHeartIcon.6aff9bb6a4abdf5598c1127c23a5ab7a.svg",
+    "static/media/sharedIcon.svg": "/iRecipes/static/media/sharedIcon.862b7a9086b7e50c8525c80485cb5e51.svg",
+    "static/media/shareIcon.svg": "/iRecipes/static/media/shareIcon.491440d583ac272843bde24f675d4391.svg",
+    "main.fb761b5a.css.map": "/iRecipes/static/css/main.fb761b5a.css.map",
+    "main.7677def1.js.map": "/iRecipes/static/js/main.7677def1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fb761b5a.css",
+    "static/js/main.7677def1.js"
+  ]
+}
