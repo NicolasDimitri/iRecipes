@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/iRecipes/static/css/main.fb761b5a.css",
-    "main.js": "/iRecipes/static/js/main.7677def1.js",
+    "main.js": "/iRecipes/static/js/main.19489b10.js",
     "static/media/Amaranth-Regular.ttf": "/iRecipes/static/media/Amaranth-Regular.f001406c48689971189f.ttf",
     "static/media/notification.svg?s3g3t9": "/iRecipes/static/media/notification.5d0158671dd860c714c4.svg",
     "static/media/loading.svg": "/iRecipes/static/media/loading.490ff62835d878fdd789e5971844db31.svg",
@@ -22,10 +22,10 @@
     "static/media/sharedIcon.svg": "/iRecipes/static/media/sharedIcon.862b7a9086b7e50c8525c80485cb5e51.svg",
     "static/media/shareIcon.svg": "/iRecipes/static/media/shareIcon.491440d583ac272843bde24f675d4391.svg",
     "main.fb761b5a.css.map": "/iRecipes/static/css/main.fb761b5a.css.map",
-    "main.7677def1.js.map": "/iRecipes/static/js/main.7677def1.js.map"
+    "main.19489b10.js.map": "/iRecipes/static/js/main.19489b10.js.map"
   },
   "entrypoints": [
     "static/css/main.fb761b5a.css",
-    "static/js/main.7677def1.js"
+    "static/js/main.19489b10.js"
   ]
 }
